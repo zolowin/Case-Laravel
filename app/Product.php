@@ -33,6 +33,6 @@ class Product extends Model
     protected $primaryKey = 'product_id';
 
     public function category(){
-        return $this->belongsTo('App\Category');
+        return $this->belongsTo('App\Category', 'product_category_id');
     }
 }

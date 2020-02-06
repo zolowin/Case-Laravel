@@ -14,6 +14,7 @@
                         <table class="table table-bordered">
                             <thead class="thead-dark text-center">
                             <tr>
+                                <th scope="col">#</th>
                                 <th scope="col">Category Name</th>
                                 <th scope="col">Category Alias</th>
                                 <th scope="col">Category Enable</th>
@@ -23,9 +24,10 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($categories as $cate)
+                            @foreach($categories as $key => $cate)
                                 <tr>
-                                    <th scope="row">{{ $cate->category_name }}</th>
+                                    <th scope="row">{{ $categories->firstItem() +$key }}</th>
+                                    <td>{{ $cate->category_name }}</td>
                                     <td>{{ $cate->category_alias }}</td>
                                     <td>
                                         @if($cate->category_enable === 0)
@@ -39,7 +41,7 @@
                                             ----
                                         @else
                                             @foreach($categories as $cate_sub)
-                                                @if($cate_sub->category_id === $cate->p_category_id)
+                                                @if($cate_sub->category_id == $cate->p_category_id)
                                                     {{ $cate_sub->category_name }}
                                                 @endif
                                             @endforeach

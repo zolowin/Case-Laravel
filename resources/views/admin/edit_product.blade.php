@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Thêm Sản Phẩm')
+@section('title', 'Sửa Sản Phẩm')
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -13,7 +13,7 @@
                         <p class="mt-3 text-success text-center"> {{Session::get('success')}} </p>
                     @endif
                     <div class="card-body">
-                        <form method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('product.update', $product->product_id) }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
                                 <label for="product_name" class="col-md-4 col-form-label text-md-right">Product's
@@ -127,7 +127,9 @@
                                     Description</label>
 
                                 <div class="col-md-10   ">
-                                    <textarea name="product_describes" id="product_describes" class="col-md-4 col-form-label text-md-right ckeditor" cols="30" rows="10" >
+                                    <textarea name="product_describes" id="product_describes"
+                                              class="col-md-4 col-form-label text-md-right ckeditor" cols="30"
+                                              rows="10">
                                         {!! $product->product_describes !!}
                                     </textarea>
                                     @error('product_describes')
@@ -216,7 +218,8 @@
                                     Image</label>
 
                                 <div class="col-md-6">
-                                    <img src="{{ 'data:image/jpeg;base64,'.$product->product_image }}" alt="product_image"
+                                    <img src="{{ 'data:image/jpeg;base64,'.$product->product_image }}"
+                                         alt="product_image"
                                          style="max-width: 200px">
                                     <input id="product_image" type="file"
                                            class="form-control" name="product_image">
@@ -271,7 +274,8 @@
                                 <div class="col-md-6">
                                     <input id="product_operating_system" type="text"
                                            class="form-control @error('product_operating_system') is-invalid @enderror"
-                                           name="product_operating_system" value="{{ $product->product_operating_system }}"
+                                           name="product_operating_system"
+                                           value="{{ $product->product_operating_system }}"
                                            required
                                            autocomplete="product_operating_system">
 
@@ -360,12 +364,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="product_category_id" class="col-md-4 col-form-label text-md-right">Product
+                                <label for="product_category_id" class="col-md-4 col-form-label text-md-right">Product's
                                     Category</label>
 
                                 <div class="col-md-6">
                                     <select name="product_category_id" id="product_category_id" class="form-control">
-                                        <option value="0">---Danh Mục Gốc---</option>
+                                        <option value="{{ $product->product_category_id }}">{{ $product->category  }}</option>
                                         @foreach($categories as $cate)
                                             @if($cate->p_category_id === 0)
                                                 <option
@@ -373,7 +377,7 @@
                                                 @foreach($categories as $cate_sub)
                                                     @if($cate_sub->p_category_id != 0 && $cate_sub->p_category_id === $cate->category_id)
                                                         <option
-                                                            value="{{ $cate_sub->category_id }}">{{'----'.$cate_sub->category_name }}</option>
+                                                            value="{{ $cate_sub->category_id }}">{{ '----'.$cate_sub->category_name }}</option>
                                                     @endif
                                                 @endforeach
                                             @endif

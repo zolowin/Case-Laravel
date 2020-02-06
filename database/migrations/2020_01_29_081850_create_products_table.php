@@ -37,7 +37,6 @@ class CreateProductsTable extends Migration
             $table->integer('product_category_id')->unsigned();
             $table->timestamps();
         });
-
     }
 
     /**

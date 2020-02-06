@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(7);
+        $categories = Category::paginate(10);
         return view('admin.manage_category', compact('categories'));
     }
 
@@ -44,22 +44,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $data = \request()->validate([
-            'category_name' => 'required',
-            'category_alias' => 'required',
-            'category_status' => 'required',
-            'category_enable' => 'required',
-            'p_category_id' => 'required'
-        ]);
+//        $data = \request()->validate([
+//            'category_name' => 'required',
+//            'category_alias' => 'required',
+//            'category_status' => 'required',
+//            'category_enable' => 'required',
+//            'p_category_id' => 'required'
+//        ]);
 
-        $category = new Category();
-        $category->category_name = $data['category_name'];
-        $category->category_alias = $data['category_alias'];
-        $category->category_status = $data['category_status'];
-        $category->category_enable = $data['category_enable'];
-        $category->p_category_id = $data['p_category_id'];
-        $category->save();
-
+        Category::create($request->all());
         $success = "Thêm Danh Mục Thành Công";
 
         return redirect('category/create-category')->with('success', $success);
@@ -100,13 +93,7 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
 
-        $category->category_name = \request('category_name');
-        $category->category_alias = \request('category_alias');
-        $category->category_status = \request('category_status');
-        $category->category_enable = \request('category_enable');
-        $category->p_category_id = \request('p_category_id');
-        $category->save();
-
+        $category->update($request->all());
         $success = "Sửa Danh Mục Thành Công";
 
         return redirect()->route('category.edit', [$id])->with('success', $success);
