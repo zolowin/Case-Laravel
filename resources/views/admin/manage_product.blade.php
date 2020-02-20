@@ -18,7 +18,7 @@
                     <th scope="col">Product's Chip</th>
                     <th scope="col">Product's Enable</th>
                     <th scope="col">Product's Ram</th>
-                    <th scope="col">Product's Color</th>
+                    <th scope="col">Product's In Stock</th>
                     <th scope="col">Product's Price</th>
                     <th scope="col">Product's Image</th>
                     <th scope="col">Product's Category</th>
@@ -40,7 +40,7 @@
                             @endif
                         </td>
                         <td>{{ $product->product_ram }}</td>
-                        <td>{{ $product->product_color }}</td>
+                        <td>{{ $product->product_iStock }}</td>
                         <td>{{ $product->product_price }}</td>
                         <td><img src="{{ 'data:image/jpeg;base64,'.$product->product_image }}" alt="product_image"
                                  style="max-width: 200px"></td>

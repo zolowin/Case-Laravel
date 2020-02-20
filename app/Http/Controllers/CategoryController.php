@@ -7,8 +7,12 @@ use App\Category;
 use mysql_xdevapi\Session;
 
 
-class CategoryController extends Controller
+class   CategoryController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('admin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -55,7 +59,7 @@ class CategoryController extends Controller
         Category::create($request->all());
         $success = "Thêm Danh Mục Thành Công";
 
-        return redirect('category/create-category')->with('success', $success);
+        return redirect('admin/category/create-category')->with('success', $success);
     }
 
     /**
@@ -112,6 +116,6 @@ class CategoryController extends Controller
         $category->delete($category->category_id);
         $success = "Xóa Danh Mục $category->category_name Thành Công";
 
-        return redirect('category/manage-category')->with('success', $success);
+        return redirect('admin/category/')->with('success', $success);
     }
 }

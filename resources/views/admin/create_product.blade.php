@@ -91,7 +91,7 @@
                                     Screen</label>
 
                                 <div class="col-md-6">
-                                    <input id="product_screen" type="number" step="0.1 "
+                                    <input id="product_screen" type="number" step="0.01"
                                            class="form-control @error('product_screen') is-invalid @enderror"
                                            name="product_screen" value="{{ old('product_screen') }}" required
                                            autocomplete="product_screen">
@@ -109,7 +109,7 @@
                                     Camera Resolution</label>
 
                                 <div class="col-md-6">
-                                    <input id="product_camera_resolution" type="number"
+                                    <input id="product_camera_resolution" type="number" step="0.01"
                                            class="form-control @error('product_camera_resolution') is-invalid @enderror"
                                            name="product_camera_resolution"
                                            value="{{ old('product_camera_resolution') }}" required
@@ -193,16 +193,16 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="product_color" class="col-md-4 col-form-label text-md-right">Product's
-                                    Color</label>
+                                <label for="product_iStock" class="col-md-4 col-form-label text-md-right">Product's
+                                    In Stock</label>
 
                                 <div class="col-md-6">
-                                    <input id="product_color" type="text"
-                                           class="form-control @error('product_color') is-invalid @enderror"
-                                           name="product_color" value="{{ old('product_color') }}" required
-                                           autocomplete="product_color">
+                                    <input id="product_iStock" type="number"
+                                           class="form-control @error('product_iStock') is-invalid @enderror"
+                                           name="product_iStock" value="{{ old('product_iStock') }}" required
+                                           autocomplete="product_iStock">
 
-                                    @error('product_color')
+                                    @error('product_iStock')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -215,8 +215,10 @@
                                     Image</label>
 
                                 <div class="col-md-6">
+                                    <img style="max-width:200px" src="http://placehold.it/180" id="photo" alt="your image" />
+
                                     <input id="product_image" type="file"
-                                           class="form-control" name="product_image">
+                                           class="form-control" name="product_image" onchange="readURL(this);">
 
                                     @error('product_image')
                                     <span class="invalid-feedback" role="alert">
@@ -318,16 +320,16 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="product_sku" class="col-md-4 col-form-label text-md-right">Product's
-                                    SKU</label>
+                                <label for="product_color" class="col-md-4 col-form-label text-md-right">Product's
+                                    Color</label>
 
                                 <div class="col-md-6">
-                                    <input id="product_sku" type="number"
-                                           class="form-control @error('product_sku') is-invalid @enderror"
-                                           name="product_sku" value="{{ old('product_sku') }}" required
-                                           autocomplete="product_sku">
+                                    <input id="product_color" type="text"
+                                           class="form-control @error('product_color') is-invalid @enderror"
+                                           name="product_color" value="{{ old('product_color') }}" required
+                                           autocomplete="product_color">
 
-                                    @error('product_sku')
+                                    @error('product_color')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -395,4 +397,17 @@
             </div>
         </div>
     </div>
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#photo')
+                        .attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 @endsection

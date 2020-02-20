@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class  Product extends Model
 {
     protected $table = 'products';
     protected $fillable =
@@ -24,7 +24,7 @@ class Product extends Model
             'product_operating_system',
             'product_origin',
             'product_year_made',
-            'product_sku',
+            'product_iStock',
             'product_enable',
             'product_describes',
             'product_feature',
@@ -34,5 +34,9 @@ class Product extends Model
 
     public function category(){
         return $this->belongsTo('App\Category', 'product_category_id');
+    }
+
+    public function order(){
+        return $this->hasOne('App\Order');
     }
 }

@@ -1,11 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('title', 'Thêm Danh Mục')
 @section('content')
+
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-3">
-                @include('admin.nav')
-            </div>
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header font-weight-bold">Add Category</div>
@@ -58,8 +56,8 @@
 
                                 <div class="col-md-6">
                                     <select name="category_status" id="category_status" class="form-control">
-                                        <option value="0">Out of stock</option>
                                         <option value="1">Stocking</option>
+                                        <option value="0">Out of stock</option>
                                     </select>
                                 </div>
                             </div>
@@ -70,8 +68,8 @@
 
                                 <div class="col-md-6">
                                     <select name="category_enable" id="category_enable" class="form-control">
-                                        <option value="1">Disable</option>
-                                        <option value="0">Enable</option>
+                                        <option value="1">Enable</option>
+                                        <option value="0">Disable</option>
                                     </select>
                                     @error('category_enable')
                                     <span class="invalid-feedback" role="alert">

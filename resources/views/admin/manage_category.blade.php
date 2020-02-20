@@ -1,17 +1,16 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('title', 'Quản lý danh mục')
 @section('content')
+
+
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-3">
-                @include('admin.nav')
-            </div>
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header font-weight-bold">List Categories</div>
 
                     <div class="card-body">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" id="category_table">
                             <thead class="thead-dark text-center">
                             <tr>
                                 <th scope="col">#</th>
@@ -55,8 +54,11 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href=" {{ route('category.edit', $cate->category_id) }}" ><i class="fa fa-edit mr-1" title="Edit"> Edit</i></a>
-                                        <a href="{{ route('category.destroy', $cate->category_id) }}" onclick="return confirm('Bạn có chắc chắn xóa danh mục này?')" ><i class="fa fa-trash" title="Delete"> Delete</i></a>
+                                        <a href=" {{ route('category.edit', $cate->category_id) }}"><i
+                                                class="fa fa-edit mr-1" title="Edit"> Edit</i></a>
+                                        <a href="{{ route('category.destroy', $cate->category_id) }}"
+                                           onclick="return confirm('Bạn có chắc chắn xóa danh mục này?')"><i
+                                                class="fa fa-trash" title="Delete"> Delete</i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -64,11 +66,11 @@
                         </table>
                     </div>
                 </div>
-                <span>{{ $categories->render() }}</span>
             </div>
+            <span>{{ $categories->render() }}</span>
         </div>
-
     </div>
-
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 @endsection
 

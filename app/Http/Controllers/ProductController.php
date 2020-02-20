@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -38,7 +43,11 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+//        dd(22);
+//        dd($request->all());
+
         $product = Product::create($request->all());
+        $product->product_slug = strtolower(str_replace(' ', '-',$product->product_name));
         if ($request->hasFile('product_image')) {
             $image = base64_encode(file_get_contents($request->file('product_image')));
             $product->product_image = $image;
@@ -46,7 +55,7 @@ class ProductController extends Controller
         $product->save();
         $success = "Thêm Sản Phẩm Thành Công";
 
-        return redirect('product/')->with('success', $success);
+        return redirect('admin/product/')->with('success', $success);
     }
 
     /**
@@ -108,6 +117,6 @@ class ProductController extends Controller
         $product->delete($product->product_id);
         $success = "Xóa Danh Mục $product->product_name Thành Công";
 
-        return redirect('product/')->with('success', $success);
+        return redirect('admin/product/')->with('success', $success);
     }
 }

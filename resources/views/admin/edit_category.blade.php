@@ -57,12 +57,12 @@
 
                                 <div class="col-md-6">
                                     <select name="category_status" id="category_status" class="form-control">
-                                        @if($category->category_status === 0)
-                                        <option value="0">Out of stock</option>
+                                        @if($category->category_status === 1)
                                             <option value="1">Stocking</option>
-                                        @else
-                                        <option value="1">Stocking</option>
                                             <option value="0">Out of stock</option>
+                                        @else
+                                            <option value="0">Out of stock</option>
+                                            <option value="1">Stocking</option>
                                         @endif
                                     </select>
                                 </div>
@@ -74,12 +74,12 @@
 
                                 <div class="col-md-6">
                                     <select name="category_enable" id="category_enable" class="form-control">
-                                        @if($category->category_enable === 0)
-                                            <option value="0">Disable</option>
+                                        @if($category->category_enable === 1)
                                             <option value="1">Enable</option>
+                                            <option value="0">Disable</option>
                                         @else
-                                            <option value="1">Enable</option>
                                             <option value="0">Disable</option>
+                                            <option value="1">Enable</option>
                                         @endif
                                     </select>
                                     @error('category_enable')
@@ -134,6 +134,6 @@
         </div>
     </div>
     <div class="text-center mt-2">
-        <a href="{{ URL::to('/category/') }}" class="btn btn-warning">Về Trang Quản Lý Danh Mục</a>
+        <a href="{{ URL::to('admin/category/') }}" class="btn btn-warning">Về Trang Quản Lý Danh Mục</a>
     </div>
 @endsection

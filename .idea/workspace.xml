@@ -2,16 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="29352c0e-22bf-4697-8420-f8acdf5a8365" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/tutorial.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/tutorial.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_22_153549_create_categories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_22_153549_create_categories_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_29_081850_create_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_29_081850_create_products_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_02_01_180523_add_products_foreign_key.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_02_01_180523_add_products_foreign_key.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/CategoryTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/CategoryTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/ProductTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/ProductTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/create_category.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/create_category.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/create_product.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/create_product.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/edit_category.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/edit_category.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/edit_product.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/edit_product.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/manage_category.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/manage_category.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/manage_product.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/manage_product.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +44,20 @@
     <execution>
       <executable />
     </execution>
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -123,15 +157,25 @@
       <path value="$PROJECT_DIR$/vendor/ramsey/uuid" />
       <path value="$PROJECT_DIR$/vendor/dragonmantank/cron-expression" />
       <path value="$PROJECT_DIR$/vendor/laravel/ui" />
+      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-oracle" />
+      <path value="$PROJECT_DIR$/vendor/bumbummen99/shoppingcart" />
     </include_path>
   </component>
   <component name="ProjectId" id="1WkmU2cbO8FURi695bjGa6OmY7j" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../bds" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\tutorial\resources\views\page\partials" />
+      <recent name="D:\tutorial\resources\views\page\layout" />
+      <recent name="D:\tutorial\resources\views\shopping" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -199,6 +243,49 @@
       <workItem from="1580872051241" duration="3000" />
       <workItem from="1580872563917" duration="46000" />
       <workItem from="1580889641337" duration="499000" />
+      <workItem from="1580971698319" duration="2329000" />
+      <workItem from="1581062528982" duration="288000" />
+      <workItem from="1581070134901" duration="809000" />
+      <workItem from="1581225090963" duration="28000" />
+      <workItem from="1581316556644" duration="3359000" />
+      <workItem from="1581320945350" duration="82000" />
+      <workItem from="1581322190968" duration="113000" />
+      <workItem from="1581322803479" duration="101000" />
+      <workItem from="1581325619185" duration="48000" />
+      <workItem from="1581325750067" duration="2000" />
+      <workItem from="1581326400919" duration="62000" />
+      <workItem from="1581345044806" duration="68000" />
+      <workItem from="1581345332215" duration="1105000" />
+      <workItem from="1581346642074" duration="84000" />
+      <workItem from="1581347687608" duration="58000" />
+      <workItem from="1581382883713" duration="259000" />
+      <workItem from="1581386212986" duration="26000" />
+      <workItem from="1581386403732" duration="38000" />
+      <workItem from="1581395103386" duration="62000" />
+      <workItem from="1581396103816" duration="57000" />
+      <workItem from="1581415077000" duration="230000" />
+      <workItem from="1581415718040" duration="414000" />
+      <workItem from="1581556483172" duration="3778000" />
+      <workItem from="1581560648258" duration="22551000" />
+      <workItem from="1581593974403" duration="1924000" />
+      <workItem from="1581602859215" duration="6246000" />
+      <workItem from="1581642013148" duration="14649000" />
+      <workItem from="1581663241302" duration="73000" />
+      <workItem from="1581667930297" duration="2077000" />
+      <workItem from="1581670403054" duration="3823000" />
+      <workItem from="1581823544843" duration="814000" />
+      <workItem from="1581826636364" duration="4258000" />
+      <workItem from="1581850338787" duration="1845000" />
+      <workItem from="1581853540673" duration="3834000" />
+      <workItem from="1581857391754" duration="3746000" />
+      <workItem from="1581903332230" duration="899000" />
+      <workItem from="1581911243019" duration="8330000" />
+      <workItem from="1581931058305" duration="819000" />
+      <workItem from="1582001752484" duration="726000" />
+      <workItem from="1582075153715" duration="5182000" />
+      <workItem from="1582080442734" duration="8778000" />
+      <workItem from="1582094421462" duration="13520000" />
+      <workItem from="1582161515538" duration="1042000" />
     </task>
     <servers />
   </component>
@@ -222,23 +309,13 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/resources/views/admin/create_product.blade.php</url>
-          <line>15</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/admin/manage_product.blade.php</url>
           <line>3</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/admin/manage_category.blade.php</url>
-          <line>71</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/resources/views/admin/manage_category.blade.php</url>
-          <line>9</line>
+          <line>3</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>

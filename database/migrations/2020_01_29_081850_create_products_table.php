@@ -14,8 +14,9 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->increments('product_id');
-            $table->string('product_name');
+            $table->bigIncrements('product_id');
+            $table->string('product_name')->unique();
+            $table->string('product_slug')->unique()->default('');
             $table->string('product_chip');
             $table->integer('product_ram');
             $table->integer('product_battery');
@@ -32,7 +33,7 @@ class CreateProductsTable extends Migration
             $table->string('product_operating_system');
             $table->string('product_origin');
             $table->integer('product_year_made');
-            $table->string('product_sku');
+            $table->string('product_iStock');
             $table->tinyInteger('product_enable');
             $table->integer('product_category_id')->unsigned();
             $table->timestamps();

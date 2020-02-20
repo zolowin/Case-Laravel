@@ -90,7 +90,7 @@
                                     Screen</label>
 
                                 <div class="col-md-6">
-                                    <input id="product_screen" type="number" step="0.1 "
+                                    <input id="product_screen" type="number" step="0.01 "
                                            class="form-control @error('product_screen') is-invalid @enderror"
                                            name="product_screen" value="{{ $product->product_screen }}" required
                                            autocomplete="product_screen">
@@ -108,7 +108,7 @@
                                     Camera Resolution</label>
 
                                 <div class="col-md-6">
-                                    <input id="product_camera_resolution" type="number"
+                                    <input id="product_camera_resolution" type="number" step="0.01"
                                            class="form-control @error('product_camera_resolution') is-invalid @enderror"
                                            name="product_camera_resolution"
                                            value="{{ $product->product_camera_resolution }}" required
@@ -196,16 +196,16 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="product_color" class="col-md-4 col-form-label text-md-right">Product's
-                                    Color</label>
+                                <label for="product_iStock" class="col-md-4 col-form-label text-md-right">Product's
+                                    In Stock</label>
 
                                 <div class="col-md-6">
-                                    <input id="product_color" type="text"
-                                           class="form-control @error('product_color') is-invalid @enderror"
-                                           name="product_color" value="{{ $product->product_color }}" required
-                                           autocomplete="product_color">
+                                    <input id="product_iStock" type="number"
+                                           class="form-control @error('product_iStock') is-invalid @enderror"
+                                           name="product_iStock" value="{{ $product->product_iStock }}" required
+                                           autocomplete="product_iStock">
 
-                                    @error('product_color')
+                                    @error('product_iStock')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -220,9 +220,9 @@
                                 <div class="col-md-6">
                                     <img src="{{ 'data:image/jpeg;base64,'.$product->product_image }}"
                                          alt="product_image"
-                                         style="max-width: 200px">
+                                         style="max-width: 200px" id="photo">
                                     <input id="product_image" type="file"
-                                           class="form-control" name="product_image">
+                                           class="form-control" name="product_image" onchange="readURL(this);">
                                     @error('product_image')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -324,16 +324,16 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="product_sku" class="col-md-4 col-form-label text-md-right">Product's
-                                    SKU</label>
+                                <label for="product_color" class="col-md-4 col-form-label text-md-right">Product's
+                                    Color</label>
 
                                 <div class="col-md-6">
-                                    <input id="product_sku" type="number"
-                                           class="form-control @error('product_sku') is-invalid @enderror"
-                                           name="product_sku" value="{{ $product->product_sku }}" required
-                                           autocomplete="product_sku">
+                                    <input id="product_color" type="text"
+                                               class="form-control @error('product_color') is-invalid @enderror"
+                                                   name="product_color" value="{{ $product->product_color }}" required
+                                               autocomplete="product_color">
 
-                                    @error('product_sku')
+                                        @error('product_color')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -369,7 +369,7 @@
 
                                 <div class="col-md-6">
                                     <select name="product_category_id" id="product_category_id" class="form-control">
-                                        <option value="{{ $product->product_category_id }}">{{ $product->category  }}</option>
+                                        <option value="0">---Danh Mục Gốc---</option>
                                         @foreach($categories as $cate)
                                             @if($cate->p_category_id === 0)
                                                 <option
@@ -377,7 +377,7 @@
                                                 @foreach($categories as $cate_sub)
                                                     @if($cate_sub->p_category_id != 0 && $cate_sub->p_category_id === $cate->category_id)
                                                         <option
-                                                            value="{{ $cate_sub->category_id }}">{{ '----'.$cate_sub->category_name }}</option>
+                                                            value="{{ $cate_sub->category_id }}">&emsp;{{'--'.$cate_sub->category_name.'--'}}</option>
                                                     @endif
                                                 @endforeach
                                             @endif
@@ -395,7 +395,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4 text-center">
                                     <button type="submit" class="btn btn-primary">
-                                        Add Product
+                                        Edit Product
                                     </button>
                                 </div>
                             </div>
@@ -405,4 +405,17 @@
             </div>
         </div>
     </div>
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#photo')
+                        .attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 @endsection
