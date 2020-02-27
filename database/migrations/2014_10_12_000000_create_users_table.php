@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('level')->default(1);
             $table->double('money')->default(0);
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

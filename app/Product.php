@@ -33,10 +33,10 @@ class  Product extends Model
     protected $primaryKey = 'product_id';
 
     public function category(){
-        return $this->belongsTo('App\Category', 'product_category_id');
+        return $this->belongsTo('App\Category', 'product_category_id', 'product_category_id');
     }
 
     public function order(){
-        return $this->hasOne('App\Order');
+        return $this->hasOne('App\Order', 'or_product_id');
     }
 }

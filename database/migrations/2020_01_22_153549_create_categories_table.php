@@ -17,6 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->increments('category_id');
             $table->string('category_name', 100)->unique();
             $table->string('category_alias')->unique();
+            $table->tinyInteger('category_enable')->default(1);
             $table->softDeletes();
             $table->timestamps();
         });

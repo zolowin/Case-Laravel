@@ -10,8 +10,9 @@
                     <div class="col-md-3 col-sm-6">
                         <div class="single-shop-product">
                             <div class="product-upper">
-                                <img src="{{ 'data:image/jpeg;base64,'.$product->product_image }}"
-                                     alt="{{ $product->product_name }}" style="width: 195px; height: 243px">
+                                <a href="{{ route('page.show_product', $product->product_slug) }}"><img
+                                        src="{{ 'data:image/jpeg;base64,'.$product->product_image }}"
+                                        alt="{{ $product->product_name }}" style="width: 195px; height: 243px"></a>
                             </div>
                             <h2>
                                 <a href="{{ route('page.show_product', $product->product_slug) }}">{{ $product->product_name }}</a>
@@ -22,9 +23,14 @@
                             </div>
 
                             <div class="product-option-shop">
-                                <a href="{{ route('add.shopping.cart', $product->product_id) }}"
-                                   class="aadd-to-cart-link">
-                                    <i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                <form action="{{ route('add.shopping.cart', $product->product_id) }}" method="post" class="cart">
+                                    @csrf
+                                    <div class="quantity">
+                                        <input type="number" size="4" class="input-text qty text" title="Qty" value="1"
+                                               name="quantity" min="1" step="1" style="height: 42px">
+                                    </div>
+                                    <button type="submit" class="add_to_cart_button"> Add to cart</button>
+                                </form>
                             </div>
                         </div>
                     </div>

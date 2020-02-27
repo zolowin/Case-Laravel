@@ -16,11 +16,12 @@ class CategoryTableSeeder extends Seeder
             [
             'category_name' => 'Iphone',
             'category_alias' => 'iphone',
+            'category_enable'=> 1,
         ],
             [
                 'category_name' => 'Macbook',
                 'category_alias' => 'macbook',
-
+                'category_enable' => 1,
             ]
         ]);
     }

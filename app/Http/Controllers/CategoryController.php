@@ -18,27 +18,23 @@ class   CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $categories = Category::paginate(10);
-        return view('admin.manage_category', compact('categories'));
-    }
-
-//    public function __construct()
+//    public function index()
 //    {
-//        $this->middleware('auth');
+//        $categories = Category::paginate(10);
+//        return view('admin.manage_category', compact('categories'));
 //    }
+
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        $categories = Category::all();
-        return view('admin.create_category', compact('categories'));
-    }
+//    public function create()
+//    {
+//        $categories = Category::all();
+//        return view('admin.create_category', compact('categories'));
+//    }
 
     /**
      * Store a newly created resource in storage.
@@ -48,18 +44,9 @@ class   CategoryController extends Controller
      */
     public function store(Request $request)
     {
-//        $data = \request()->validate([
-//            'category_name' => 'required',
-//            'category_alias' => 'required',
-//            'category_status' => 'required',
-//            'category_enable' => 'required',
-//            'p_category_id' => 'required'
-//        ]);
+        Category::create($this->validateAttribute());
 
-        Category::create($request->all());
-        $success = "Thêm Danh Mục Thành Công";
-
-        return redirect('admin/category/create-category')->with('success', $success);
+        return redirect('admin/dashboard');
     }
 
     /**
@@ -82,8 +69,9 @@ class   CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::findOrFail($id);
-        $categories = Category::all();
-        return view('admin.edit_category', compact('category', 'categories'));
+//        $categories = Category::all();
+//        return view('admin.edit_category', compact('category', 'categories'));
+        return response()->json($category, 200);
     }
 
     /**
@@ -97,11 +85,10 @@ class   CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
 
-        $category->update($request->all());
+        $category->update($this->validateAttribute());
         $success = "Sửa Danh Mục Thành Công";
 
-        return redirect()->route('category.edit', [$id])->with('success', $success);
-
+        return redirect()->route('dashboard.home');
     }
 
     /**
@@ -112,10 +99,28 @@ class   CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
-        $category->delete($category->category_id);
-        $success = "Xóa Danh Mục $category->category_name Thành Công";
+        $category = Category::destroy($id);
 
-        return redirect('admin/category/')->with('success', $success);
+        return redirect('admin/dashboard');
+    }
+
+    public function restore($id){
+        Category::onlyTrashed()->where('category_id','=',$id)->restore();
+
+        return redirect()->route('dashboard.home');
+    }
+
+    public function permanently_remove($id){
+        Category::forceDelete()->where('category_id', '=', $id);
+
+        return redirect()->route('dashboard.home');
+    }
+
+    public function validateAttribute()
+    {
+        return request()->validate([
+            'category_name' => 'required',
+            'category_alias' => 'required',
+        ]);
     }
 }

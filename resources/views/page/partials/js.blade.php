@@ -12,8 +12,10 @@
 <script src="{{ asset('js/jquery.easing.1.3.min.js') }}"></script>
 
 {{--Typehead--}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.j"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.3.0/typeahead.bundle.min.js"></script>
+{{--datatable--}}
+{{--<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>--}}
 <!-- Main Script -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
 <script src="{{ asset('js/main.js') }}"></script>
 @yield('script')

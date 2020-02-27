@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'Dashboard')
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -11,8 +12,7 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('dashboard.home') }}">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -29,7 +29,7 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>{{ count($new_tr) }}</h3>
+                                <h3 id="count_new_tr">{{ count($new_tr) }}</h3>
 
                                 <p>New Transactions</p>
                             </div>
@@ -44,8 +44,7 @@
                         <!-- small box -->
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>{{ count($categories) }}</h3>
-
+                                <h3 id="count_category">{{ count($categories)}}</h3>
                                 <p>Categories</p>
                             </div>
                             <div class="icon">
@@ -61,7 +60,7 @@
                             <div class="inner">
                                 <h3>{{ count($products) }}</h3>
 
-                                <p>Product</p>
+                                <p>Products</p>
                             </div>
                             <div class="icon">
                                 <i class="fab fa-product-hunt"></i>
@@ -76,7 +75,7 @@
                             <div class="inner">
                                 <h3>{{ count($users) }}</h3>
 
-                                <p>User Registered</p>
+                                <p>Users Registered</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-person-add"></i>
@@ -90,6 +89,7 @@
                 @include('admin.dashboard.product')
                 @include('admin.dashboard.transaction')
                 @include('admin.dashboard.user')
+                @include('admin.dashboard.modal')
             </div>
         </section>
         <!-- /.content -->
@@ -123,7 +123,7 @@
         $(document).ready(function () {
             $("#btn_user").click(function () {
                 $("#pro_main, #cate_main, #transaction_main").hide();
-                $("#user.main").show();
+                $("#user_main").show();
             });
         });
     </script>
@@ -134,13 +134,19 @@
                 serverSide: true,
                 ajax: '{{ route('datatable.tr') }}',
                 columns: [
-                    {data: 'id', name: 'id'},
+                    {data: 'id',
+                        render: function (data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }
+                    },
                     {data: 'tr_user_id', name: 'tr_user_id'},
-                    {data: 'tr_address', name: 'tr_address'},
+                    {data: 'tr_user_name', name: 'tr_user_name'},
+                    {data: 'tr_city', name: 'tr_city'},
                     {data: 'tr_phone', name: 'tr_phone'},
                     {data: 'tr_total_price', name: 'tr_total_price'},
+                    {data: 'tr_status', name: 'tr_status'},
+                    {data: 'tr_note', name: 'tr_note'},
                     {data: 'created_at', name: 'created_at'},
-                    {data: 'updated_at', name: 'updated_at'},
                     {data: 'action', name: 'action', orderable: false, searchable: false}
                 ]
             });
@@ -150,14 +156,271 @@
                 serverSide: true,
                 ajax: '{{ route('datatable.cate') }}',
                 columns: [
-                    {data: 'category_id', name: 'category_id'},
+                    {data: 'category_id',
+                        render: function (data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }
+                    },
                     {data: 'category_name', name: 'category_name'},
                     {data: 'category_alias', name: 'category_alias'},
-                    {data: 'p_category_id', name: 'p_category_id'},
                     {data: 'created_at', name: 'created_at'},
                     {data: 'updated_at', name: 'updated_at'},
                     {data: 'action', name: 'action', orderable: false, searchable: false}
                 ]
+            });
+
+            $('#product-table').DataTable();
+
+            $('#user-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{{ route('datatable.user') }}',
+                columns: [
+                    {
+                        data: 'id',
+                        render: function (data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }
+                    },
+                    {data: 'name', name: 'name'},
+                    {data: 'email', name: 'email'},
+                    {data: 'created_at', name: 'created_at'},
+                    {data: 'money', name: 'money'},
+                    {data: 'level', name: 'level'},
+                    {data: 'action', name: 'action', orderable: false, searchable: false}
+                ]
+            });
+        });
+
+        $("#categoryDeleted").DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{{ route("datatable.cateDelData") }}',
+            columns: [
+                {
+                    data: 'category_id',
+                    render: function (data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
+                },
+                {
+                    data: 'category_name', name: 'category_name'
+                },
+                {
+                    data: 'category_alias', name: 'category_alias'
+                },
+                {
+                    data: 'Total Products',
+                },
+                {
+                    data: 'action', name: 'action', orderable: false, searchable: false
+                }
+            ],
+            order: [[0, 'asc']]
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            var count_category = parseInt($('#count_category').text());
+            var count_new_tr = parseInt($('#count_new_tr').text());
+            var count_product = parseInt($('#count_product').text());
+            var count_user = parseInt($('#count_user').text());
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            //cate
+            $('#create_category').click(function () {
+                $('.modal-title').val('Add New Category');
+                $('#action').val('Add');
+            });
+
+            $('#form_category').on('submit', function (e) {
+                e.preventDefault();
+                count_category +=1 ;
+                let action_url = '';
+                let type = '';
+                let category_name = jQuery('#category_name').val()
+                let category_alias = jQuery('#category_alias').val()
+                let id = jQuery('#category_id').val();
+
+                if ($('#action').val() === 'Add') {
+                    action_url = 'category/create-category';
+                }
+
+                if ($('#action').val() === 'Edit') {
+                    action_url = `category/edit-category/${id}`;
+                }
+
+                $.ajax({
+                    url: action_url,
+                    method: 'POST',
+                    data: {
+                        category_name: category_name,
+                        category_alias: category_alias
+                    },
+
+                    success: function () {
+                        $('#add_category').modal('hide');
+                        $('#category-table').DataTable().ajax.reload();
+                        $('#form_category')[0].reset();
+                        $('#success_content').html('New Category has been created');
+                        $('#success').modal('show');
+                        $('#count_category').text(count_category);
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            });
+
+            //edit-cate
+            $(document).on('click', '.edit-category', function () {
+                let id = $(this).data('id');
+                $.ajax({
+                    url: `category/edit-category/${id}`,
+                    success: function (data) {
+                        $('#category_id').val(id),
+                            $('#category_name').val(data.category_name),
+                            $('#category_alias').val(data.category_alias),
+                            $('#action').val('Edit')
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                });
+            });
+
+            //delete-cate
+            $(document).on('click', '.delete-category', function () {
+                let id = $(this).data('id');
+                count_category -= 1;
+                $('#ok_button').click(function () {
+                    $.ajax({
+                        url: `category/destroy-category/${id}`,
+                        method: 'GET',
+                        beforeSend: function () {
+                            $('#ok_button').text('Deleting...');
+                        },
+                        success: function () {
+                            $('#confirmModal').modal('hide');
+                            $('#category-table').DataTable().ajax.reload();
+                            $('#count_category').text(count_category);
+                            $('#success_content').html('Your record has been deleted');
+                            $('#success').modal('show');
+                        },
+                        error: function (err) {
+                            console.log(err);
+                        }
+                    })
+                })
+            });
+            //remove softdel cate
+            $(document).on('click', '.remove-category', function () {
+                let id = $(this).data('id');
+                $('#ok_button').click(function () {
+                    $.ajax({
+                        url: `category/permanently_remove/${id}`,
+                        method: 'GET',
+                        beforeSend: function () {
+                            $('#ok_button').text('Removing...');
+                        },
+                        success: function () {
+                            $('#confirmModal').modal('hide');
+                            $('#categoryDeleted').DataTable().ajax.reload();
+                            $('#success_content').html('This category has been removed');
+                            $('#success').modal('show');
+                        },
+                        error: function (err) {
+                            console.log(err);
+                        }
+                    })
+                })
+            });
+
+            //restore-cate
+            $(document).on('click', '.restore-category', function () {
+                let id = $(this).data('id');
+                count_category += 1;
+
+                if (confirm('Are you sure to restore?')) {
+                    $.ajax({
+                        url: `category/restore-category/${id}`,
+                        method: 'GET',
+                        success: function () {
+                            $('#category-table').DataTable().ajax.reload();
+                            $('#categoryDeleted').DataTable().ajax.reload();
+                            $('#count_category').text(count_category);
+                            $('#success_content').html('Your record has been restore');
+                            $('#success').modal('show');
+                        },
+                        error: function (err) {
+                            console.log(err);
+                        }
+                    });
+                }
+            });
+            // endcate
+
+            //transaction
+            $(document).on('click', '.edit-transaction', function () {
+                let id = $(this).data('id');
+                $.ajax({
+                    url: `../shopping/edit-transaction/${id}`,
+                    success: function (data) {
+                        $('#id').val(id),
+                            $('#tr_user_name').val(data.tr_user_name),
+                            $('#tr_address').val(data.tr_address),
+                            $('#tr_city').val(data.tr_city),
+                            $('#tr_phone').val(data.tr_phone),
+                            $('#tr_note').val(data.tr_note),
+                            $('#tr_status').val(data.tr_status)
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                });
+            });
+
+            $('#form-transaction ').on('submit', function (e) {
+                e.preventDefault();
+
+                let tr_user_name = jQuery('#tr_user_name').val()
+                let tr_address = jQuery('#tr_address').val()
+                let tr_city = jQuery('#tr_city').val()
+                let tr_phone = jQuery('#tr_phone').val()
+                let tr_note = jQuery('#tr_note').val()
+                let tr_status = jQuery('#tr_status').val()
+                let id = jQuery('#id').val();
+                count_new_tr -= 1;
+
+                $.ajax({
+                    url: `../shopping/edit-transaction/${id}`,
+                    method: 'POST',
+                    data: {
+                        tr_user_name: tr_user_name,
+                        tr_address: tr_address,
+                        tr_city: tr_city,
+                        tr_phone: tr_phone,
+                        tr_note: tr_note,
+                        tr_status: tr_status
+                    },
+
+                    success: function () {
+                        $('#edit-transaction').modal('hide');
+                        $('#transaction-table').DataTable().ajax.reload();
+                        $('#form-transaction')[0].reset();
+                        $('#count_new_tr').text(count_new_tr);
+                        $('#success_content').html('Transaction has been updated');
+                        $('#success').modal('show');
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
             });
         });
     </script>

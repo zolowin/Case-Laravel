@@ -2,4 +2,4 @@
 @section('title','search')
 @section('content')
 
-    @endsection
+@endsection

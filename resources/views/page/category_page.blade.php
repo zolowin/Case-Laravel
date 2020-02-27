@@ -1,28 +1,30 @@
 @extends('page.layout.page')
-@section('title','Category')
-@section('title  Page',"Category's Product")
+@section('title', $category->category_name)
+@section('title page', $category->category_name)
 @section('content')
     <div class="single-product-area">
         <div class="zigzag-bottom"></div>
         <div class="container">
             <div class="row">
-                @foreach($products as $product)
+                @foreach($products  as $product)
                     <div class="col-md-3 col-sm-6">
                         <div class="single-shop-product">
                             <div class="product-upper">
-                                <img src="{{ 'data:image/jpeg;base64,'.$product->product_image }}"
+                                <img src="{{ 'data:image/jpeg;base64,'. $product->product_image }}"
                                      alt="{{ $product->product_name }}" style="width: 195px; height: 243px">
                             </div>
                             <h2>
-                                <a href="{{ route('page.show_product', $product->product_slug) }}">{{ $product->product_name }}</a>
+                                <a href="{{ route('page.show_product', $product->product_slug ) }}">{{ $product->product_name }}</a>
                             </h2>
                             <div class="product-carousel-price">
                                 <ins>${{ number_format($product->product_price, 0, ',', ' ') }}</ins>
-                                <del>${{ number_format($product->product_price * 1.10 , 0, ',', ' ') }}</del>
+                                <del>
+                                    ${{ number_format($product->product_price * 1.10 , 0, ',', ' ') }}</del>
                             </div>
 
                             <div class="product-option-shop">
-                                <form action="{{ route('add.shopping.cart', $product->product_id) }}" method="post" class="cart">
+                                <form action="{{ route('add.shopping.cart', $product->product_id) }}"
+                                      method="post" class="cart">
                                     @csrf
                                     <div class="quantity">
                                         <input type="number" size="4" class="input-text qty text" title="Qty" value="1"
@@ -34,7 +36,6 @@
                         </div>
                     </div>
                 @endforeach
-
 
                 <div class="row">
                     <div class="col-md-12">

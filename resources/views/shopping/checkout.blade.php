@@ -82,13 +82,13 @@
                             <div class="form-group">
                                 <div class="col-md-12"><strong>Full Name :</strong></div>
                                 <div class="col-md-12">
-                                    <input type="text" name="name" class="form-control" value="{{ Auth::user()->name }}" />
+                                    <input type="text" name="tr_user_name" class="form-control" value="{{ Auth::user()->name }}" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12"><strong>Email Address:</strong></div>
                                 <div class="col-md-12">
-                                    <input type="text" name="email" class="form-control" value="{{ Auth::user()->email }}" />
+                                    <input type="text" name="email" class="form-control" value="{{ Auth::user()->email }}" disabled />
                                 </div>
                             </div>
                             <div class="form-group">

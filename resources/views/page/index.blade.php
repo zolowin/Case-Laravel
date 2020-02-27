@@ -1,6 +1,15 @@
 @extends('page.layout.page')
 @section('title', 'Shop Home')
 @section('title page', 'Home')
+@section('style')
+    <style>
+        @media screen and (max-width: 600px) {
+            div.slider-infomation {
+                display: none;
+            }
+        }
+    </style>
+@endsection
 @section('content')
     <div class="slider-area">
         <!-- Slider -->
@@ -10,11 +19,12 @@
                     <li>
                         <img src="{{ 'data:image/jpeg;base64,'.$product->product_image }}" alt="Slide"
                              style="max-height: 600px; max-width: 600px">
-                        <div class="caption-group">
+                        <div class="caption-group slider-infomation">
                             <h2 class="caption title">
                                 {{ $product->product_name }}
                             </h2>
-                            <h4 class="caption subtitle"><ins>${{ number_format($product->product_price, 0, ',', ' ') }}</ins>
+                            <h4 class="caption subtitle">
+                                <ins>${{ number_format($product->product_price, 0, ',', ' ') }}</ins>
                             </h4>
                             <a class="caption button-radius"
                                href="{{ route('page.show_product', $product->product_slug) }}"><span
@@ -74,8 +84,6 @@
                                         <img src="{{ 'data:image/jpeg;base64,'.$product->product_image }}"
                                              alt="product-image" style="width: 280px; height: 300px">
                                         <div class="product-hover">
-                                            <a href="{{ route('add.shopping.cart', $product->product_id) }}"
-                                               class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
                                             <a href="{{ route('page.show_product', $product->product_slug) }}"
                                                class="view-details-link"><i
                                                     class="fa fa-link"></i> See details</a>
@@ -105,14 +113,11 @@
                 <div class="col-md-12">
                     <div class="brand-wrapper">
                         <div class="brand-list">
-                            <img src="img/brand1.png" alt="">
-                            <img src="img/brand2.png" alt="">
-                            <img src="img/brand3.png" alt="">
-                            <img src="img/brand4.png" alt="">
-                            <img src="img/brand5.png" alt="">
-                            <img src="img/brand6.png" alt="">
-                            <img src="img/brand1.png" alt="">
-                            <img src="img/brand2.png" alt="">
+                            <a href="{{ route('page.category', 'iphone' ) }}"><img src="img/brand1.png" alt=""></a>
+                            <a href="{{ route('page.category', 'iphone' ) }}"><img src="img/brand1.png" alt=""></a>
+                            <a href="{{ route('page.category', 'iphone' ) }}"><img src="img/brand1.png" alt=""></a>
+                            <a href="{{ route('page.category', 'iphone' ) }}"><img src="img/brand1.png" alt=""></a>
+                            <a href="{{ route('page.category', 'iphone' ) }}"><img src="img/brand1.png" alt=""></a>
                         </div>
                     </div>
                 </div>
@@ -129,85 +134,27 @@
                         <h2 class="product-wid-title">Top Sellers</h2>
                         <a href="" class="wid-view-more">View All</a>
                         @foreach($topSell_product as $key => $product)
-                        <div class="single-wid-product">
-                            <a href="{{ route('page.show_product', $product->product_slug) }}"><img
-                                    src="{{ 'data:image/jpeg;base64,'.$product->product_image }}" alt="Slide"
-                                    style="height: 90px; width: 100px" class="product-thumb"></a>
-                            <h2><a href="{{ route('page.show_product', $product->product_slug) }}">{{ $product->product_name }}</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
+                            <div class="single-wid-product">
+                                <a href="{{ route('page.show_product', $product->product_slug) }}"><img
+                                        src="{{ 'data:image/jpeg;base64,'.$product->product_image }}" alt="Slide"
+                                        style="height: 90px; width: 100px" class="product-thumb"></a>
+                                <h2>
+                                    <a href="{{ route('page.show_product', $product->product_slug) }}">{{ $product->product_name }}</a>
+                                </h2>
+                                <div class="product-wid-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <div class="product-wid-price">
+                                    <ins>${{ number_format($product->product_price, 0, ',', ' ') }}</ins>
+                                    <del>${{ number_format($product->product_price * 1.10 , 0, ',', ' ') }}</del>
+                                </div>
                             </div>
-                            <div class="product-wid-price">
-                                <ins>${{ number_format($product->product_price, 0, ',', ' ') }}</ins>
-                                <del>${{ number_format($product->product_price * 1.10 , 0, ',', ' ') }}</del>
-                            </div>
-                        </div>
-                            @endforeach
+                        @endforeach
 
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="single-product-widget">
-                        <h2 class="product-wid-title">Recently Viewed</h2>
-                        <a href="#" class="wid-view-more">View All</a>
-                        <div class="single-wid-product">
-                            <a href="{{ route('page.show_product', $product->product_slug) }}"><img
-                                    src="img/product-thumb-4.jpg" alt=""
-                                    class="product-thumb"></a>
-                            <h2><a href="{{ route('page.show_product', $product->product_slug) }}">Sony playstation
-                                    microsoft</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>$400.00</ins>
-                                <del>$425.00</del>
-                            </div>
-                        </div>
-                        <div class="single-wid-product">
-                            <a href="{{ route('page.show_product', $product->product_slug) }}"><img
-                                    src="img/product-thumb-1.jpg" alt=""
-                                    class="product-thumb"></a>
-                            <h2><a href="s{{ route('page.show_product', $product->product_slug) }}">Sony Smart Air
-                                    Condtion</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>$400.00</ins>
-                                <del>$425.00</del>
-                            </div>
-                        </div>
-                        <div class="single-wid-product">
-                            <a href="{{ route('page.show_product', $product->product_slug) }}"><img
-                                    src="img/product-thumb-2.jpg" alt=""
-                                    class="product-thumb"></a>
-                            <h2><a href="{{ route('page.show_product', $product->product_slug) }}">Samsung gallaxy note
-                                    4</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>$400.00</ins>
-                                <del>$425.00</del>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -270,6 +217,8 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-4" id="product_view">
+                </div>
             </div>
         </div>
     </div> <!-- End product widget area -->
@@ -277,36 +226,28 @@
 @section('script')
     <script type="text/javascript" src="{{ asset('js/bxslider.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/script.slider.js') }}"></script>
-{{--    <script>--}}
-{{--        jQuery(document).ready(function($) {--}}
-{{--            var engine = new Bloodhound({--}}
-{{--                remote: {--}}
-{{--                    url: 'api/product?q=%QUERY%',--}}
-{{--                    wildcard: '%QUERY%'--}}
-{{--                },--}}
-{{--                datumTokenizer: Bloodhound.tokenizers.whitespace('q'),--}}
-{{--                queryTokenizer: Bloodhound.tokenizers.whitespace--}}
-{{--            });--}}
+    <script>
+        $(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
-{{--            $(".search-input").typeahead({--}}
-{{--                hint: true,--}}
-{{--                highlight: true,--}}
-{{--                minLength: 1--}}
-{{--            }, {--}}
-{{--                source: engine.ttAdapter(),--}}
-{{--                name: 'usersList',--}}
-{{--                templates: {--}}
-{{--                    empty: [--}}
-{{--                        '<div class="list-group search-results-dropdown"><div class="list-group-item">Không có kết quả phù hợp.</div></div>'--}}
-{{--                    ],--}}
-{{--                    header: [--}}
-{{--                        '<div class="list-group search-results-dropdown">'--}}
-{{--                    ],--}}
-{{--                    suggestion: function (data) {--}}
-{{--                        return '<a href="product/' + data.id + '" class="list-group-item">' + data.name + '</a>'--}}
-{{--                    }--}}
-{{--                }--}}
-{{--            });--}}
-{{--        });--}}
-{{--    </script>--}}
+            $(document).ready(function () {
+                let products = localStorage.getItem('products');
+                products = $.parseJSON(products)
+
+                if (products.length > 0)
+                    $.ajax({
+                        url: 'api/recent-product',
+                        method: "POST",
+                        data: {product_id: products},
+                        success: function (result) {
+                            $("#product_view").html('').append(result)
+                        }
+                    });
+            })
+        })
+    </script>
 @endsection

@@ -55,7 +55,7 @@ class ProductController extends Controller
         $product->save();
         $success = "Thêm Sản Phẩm Thành Công";
 
-        return redirect('admin/product/')->with('success', $success);
+        return redirect('admin/dashboard/')->with('success', $success);
     }
 
     /**
@@ -78,8 +78,9 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
+        $category = Category::findOrFail($product->product_category_id);
         $categories = Category::all();
-        return view('admin.edit_product', compact('product' , 'categories'));
+        return view('admin.edit_product', compact('product' , 'categories', 'category'));
     }
 
     /**

@@ -19,6 +19,7 @@ class CreateTransactionsTable extends Migration
             $table->foreign('tr_user_id')
                 ->references('id')
                 ->on('users');
+            $table->string('tr_user_name');
             $table->double('tr_total_price')->default(0);
             $table->string('tr_address');
             $table->string('tr_city');

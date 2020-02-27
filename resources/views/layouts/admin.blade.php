@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>AdminLTE 3 | Dashboard</title>
+    <title>Anh Tan | @yield('title')</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -29,7 +29,8 @@
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <!-- datatables -->
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div id="admin">
@@ -41,7 +42,7 @@
                 <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="{{ route('dashboard.home') }}" class="nav-link">Home</a>
+                <a href="{{ route('admin.dashboard') }}" class="nav-link">Home</a>
             </li>
 {{--            <li class="nav-item d-none d-sm-inline-block">--}}
 {{--                <a href="#" class="nav-link">Contact</a>--}}
@@ -65,11 +66,11 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="../../../../AdminLTE-master/index3.html" class="brand-link">
-            <img src="../../../../AdminLTE-master/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
+        <a href="{{ route('page.index') }}" class="brand-link">
+            <img src="../../../../AdminLTE-master/dist/img/logo.png" alt="AdminLTE Logo"
                  class="brand-image img-circle elevation-3"
                  style="opacity: .8">
-            <span class="brand-text font-weight-light">AdminLTE 3</span>
+            <span class="brand-text font-weight-light">Anh Tan Mobile</span>
         </a>
 
         <!-- Sidebar -->
@@ -94,21 +95,21 @@
 
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{ route('dashboard.home') }}" class="nav-link {{ Request::path() == 'admin/dashboard' ? 'active' : null }}">
+                                <a href="{{ route('admin.dashboard') }}" class="nav-link {{ Request::path() == 'admin/dashboard' ? 'active' : null }}">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Home Dashboard</p>
+                                    <p>Dashboard</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('dashboard.transactions') }}" class="nav-link {{ Request::path() == 'admin/dashboard/transactions' ? 'active' : null }}">
+                                <a href="{{ route('admin.transactions') }}" class="nav-link {{ Request::path() == 'admin/dashboard/transactions' ? 'active' : null }}">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Transactions Dashboard</p>
+                                    <p>Transactions</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('dashboard.sales') }}" class="nav-link {{ Request::path() == 'admin/dashboard/sales' ? 'active' : null }}">
+                                <a href="{{ route('admin.sales') }}" class="nav-link {{ Request::path() == 'admin/dashboard/sales' ? 'active' : null }}">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Sales Dashboard</p>
+                                    <p>Sales</p>
                                 </a>
                             </li>
                         </ul>
@@ -127,11 +128,8 @@
 @yield('modal')
 
 <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2019 <a href="{{ route('page.index') }}">Utsora</a>.</strong>
+    <strong>Copyright &copy; 2012-2020 <a href="{{ route('page.index') }}">Anh Tan Mobile</a>.</strong>
     All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 3.0.2
-    </div>
 </footer>
 
 <!-- Control Sidebar -->
@@ -139,13 +137,15 @@
     <!-- Control sidebar content goes here -->
 </aside>
 <!-- /.control-sidebar -->
+<script src="//cdn.ckeditor.com/4.13.1/full/ckeditor.js"></script>
+
 
 <!-- jQuery -->
 <script src="../../../../AdminLTE-master/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="../../../../AdminLTE-master/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script>
     $.widget.bridge('uibutton', $.ui.button)
 </script>

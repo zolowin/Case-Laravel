@@ -16,3 +16,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('recent-product','ApiController@renderProductView');
+Route::get('find-product','ApiController@renderProductSearch');

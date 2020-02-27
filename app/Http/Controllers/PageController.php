@@ -28,7 +28,6 @@ class PageController extends Controller
             $product = Product::findOrFail($order->or_product_id);
             array_push($topSell_product, $product);
         }
-//        dd($topSell_product);
 
         return view('page.index', compact('slider_products', 'latest_products', 'topSell_product'));
     }
@@ -41,24 +40,27 @@ class PageController extends Controller
 
     public function show_product($product_slug){
         $product = Product::where('product_slug',$product_slug)->first();
-//        dd($product);
-//        $category = Category::find($product->product_category_id);
-//        dd($product->category->category_name);
-        $category_name = $product->category->category_name;
         $related_products = Product::where('product_category_id', $product->product_category_id)
                                     ->where('product_name','<>', $product->product_name)
                                         ->orderBy('product_price','desc')
                                             ->take(6)->get();
-        return view('page.single-product', compact('product', 'category_name', 'related_products'));
+
+        $latest_products = Product::orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
+        return view('page.single-product', compact('product', 'related_products', 'latest_products'));
     }
 
-    public function category(){
-
-        return view('page.category');
+    public function category($category_alias){
+        $category = Category::where('category_alias', $category_alias)->first();
+        $products = Product::where('product_category_id', $category->category_id)->paginate(12);
+        return view('page.category_page', compact('category', 'products'));
     }
 
-    public function find(Request $request) {
-        $products = Prodcut::where('product_name', 'like', '%' . strtolower($request->get('q')) . '%')->get();
-        return view('page.search', compact('products'));
+    public function find_product(Request $request) {
+        $key_find = \request('name');
+        $products = Product::where('product_name', 'like', '%' . strtolower($key_find) . '%')->get();
+        return view('page.search_product', compact('products', 'key_find'));
     }
 }

@@ -1,26 +1,30 @@
-<div class="site-branding-area">
+<div class="site-branding-area bg-danger">
     <div class="container">
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-3">
                 <div class="logo">
-                    <h1><a href="{{ route('page.index') }}"><img src="{{ asset('img/logo.png') }}"></a></h1>
+                    <h1><a href="{{ route('page.index') }}"><img src="{{ asset('img/logo.png') }}" style="height: 100px"></a></h1>
                 </div>
             </div>
 
+            <div class="col-sm-6 text-center">
+                <h1 class="text-success font-weight-bold" style="margin-top: 70px">Think Different</h1>
+            </div>
             @guest
-                <div class="shopping-item">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                </div>
-                @if (Route::has('register'))
-                    <div class="shopping-item">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                <div class="col-sm-3" style="margin-top: 24px">
+                    <div class="shopping-item bg-warning" style="border-color: #0f401b">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </div>
-                @endif
-
+                    @if (Route::has('register'))
+                        <div class="shopping-item bg-warning" style="border-color: #0f401b">
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </div>
+                    @endif
+                </div>
             @else
-                <div class="col-sm-6">
-                    <div class="shopping-item dropdown dropdown-small">
-                        <a id="navbarDropdown" data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#">
+                <div class="col-sm-3" style="margin-top: 24px">
+                    <div class="shopping-item dropdown dropdown-small bg-success" style="border-color: #0f401b">
+                        <a id="navbar Dropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
@@ -36,9 +40,9 @@
                             </form>
                         </div>
                     </div>
-                    <div class="shopping-item">
+                    <div class="shopping-item bg-success" style="border-color: #0f401b">
                         <a href="{{ route('list.shopping.cart') }}">Cart <span class="cart-amunt">${{ Cart::subtotal(0,'',' ') }}</span> <i
-                                class="fa fa-shopping-cart"></i> <span class="product-count">{{ Cart::content()->count() }}</span></a>
+                                class="fa fa-shopping-cart"></i> <span class="product-count">{{ Cart::count() }}</span></a>
                     </div>
                 </div>
             @endguest
@@ -64,9 +68,13 @@
                     <li class="{{ Request::path() == 'shop' ? 'active' : null }}"><a href="{{ route('page.shop') }}">Shop page</a></li>
                     <li class="{{ Request::path() == 'shopping/cart' ? 'active' : null }}"><a href="{{ route('list.shopping.cart') }}">Cart</a></li>
                     <li class="{{ Request::path() == 'shopping/checkout' ? 'active' : null }}"><a href="{{ route('checkout.shopping') }}">Checkout</a></li>
-                    <li><a href="#">Category</a></li>
-                    <li><a href="#">Others</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li class="{{ Request::path() == 'category/iphone' ? 'active' : null }} dropdown"><a href="#">Category</a></li>
+                    <li>
+                        <form action="{{ route('page.find_product') }}" method="get">
+                            <input type="text" class="d-inline" name="name" style="margin-top: 10px" placeholder="Input product's name">
+                            <button class="btn btn-danger" style="font-size: 19px; margin-left: 5px">Find</button>
+                        </form>
+                    </li>
                 </ul>
             </div>
             <div class="navbar-header float-right">

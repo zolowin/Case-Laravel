@@ -27,3 +27,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+{{--<script src="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"></script>--}}
+@yield('style')
