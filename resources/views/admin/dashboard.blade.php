@@ -267,7 +267,7 @@
                         $('#add_category').modal('hide');
                         $('#category-table').DataTable().ajax.reload();
                         $('#form_category')[0].reset();
-                        $('#success_content').html('New Category has been created');
+                        $('#success_content').html('This category has been updated');
                         $('#success').modal('show');
                         $('#count_category').text(count_category);
                     },
@@ -294,52 +294,38 @@
                 });
             });
 
-            //delete-cate
-            $(document).on('click', '.delete-category', function () {
+            //delete cate
+            $(document).on('click', '.delete-category', function(){
                 let id = $(this).data('id');
+                $('#delete-id').val(id);
+                $('#delete-action').val('SoftDelete');
+            })
+            $(document).on('click', '.force-delete', function(){
+                let id = $(this).data('id');
+                $('#delete-id').val(id);
+                $('#delete-action').val('ForceDelete');
+            })
+            $('#form-delete').on('submit', function(e){
+                e.preventDefault();
+                let id = $('#delete-id').val();
                 count_category -= 1;
-                $('#ok_button').click(function () {
-                    $.ajax({
-                        url: `category/destroy-category/${id}`,
-                        method: 'GET',
-                        beforeSend: function () {
-                            $('#ok_button').text('Deleting...');
-                        },
-                        success: function () {
-                            $('#confirmModal').modal('hide');
-                            $('#category-table').DataTable().ajax.reload();
-                            $('#count_category').text(count_category);
-                            $('#success_content').html('Your record has been deleted');
-                            $('#success').modal('show');
-                        },
-                        error: function (err) {
-                            console.log(err);
-                        }
-                    })
+                $.ajax({
+                    url: `category/destroy-category/${id}`,
+                    method: 'GET',
+                    success: function(){
+                        alert(2);
+                        $('#confirm-modal').modal('hide');
+                        $('#category-table').DataTable().ajax.reload();
+                        $('#categoryDeleted').DataTable().ajax.reload();
+                        $('#count_category').text(count_category);
+                        $('#success_content').html('Your record has been deleted');
+                        $('#success').modal('show');
+                    },
+                    error: function(err){
+                        console.log(err);
+                    }
                 })
-            });
-            //remove softdel cate
-            $(document).on('click', '.remove-category', function () {
-                let id = $(this).data('id');
-                $('#ok_button').click(function () {
-                    $.ajax({
-                        url: `category/permanently_remove/${id}`,
-                        method: 'GET',
-                        beforeSend: function () {
-                            $('#ok_button').text('Removing...');
-                        },
-                        success: function () {
-                            $('#confirmModal').modal('hide');
-                            $('#categoryDeleted').DataTable().ajax.reload();
-                            $('#success_content').html('This category has been removed');
-                            $('#success').modal('show');
-                        },
-                        error: function (err) {
-                            console.log(err);
-                        }
-                    })
-                })
-            });
+            })
 
             //restore-cate
             $(document).on('click', '.restore-category', function () {

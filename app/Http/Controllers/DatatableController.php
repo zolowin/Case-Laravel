@@ -36,7 +36,7 @@ class DatatableController extends Controller
             return '<div class="btn-group btn-group-sm">
                     <button type="button" class="btn btn-primary edit-category mr-2" data-toggle="modal" data-target="#add_category" data-id ="' . $category->category_id . '"><i
                     class="fa fa-edit"></i></button>
-                    <button type="button" class="btn btn-danger delete-category" data-toggle="modal" data-target="#confirmModal" data-id ="' . $category->category_id . '"><i
+                    <button type="button" class="btn btn-danger delete-category" data-toggle="modal" data-target="#confirm-modal" data-id ="' . $category->category_id . '"><i
                     class="fa fa-trash"></i></button>';
         })->make(true);
     }
@@ -74,10 +74,11 @@ class DatatableController extends Controller
             return DataTables::of($deletedCategory)
                 ->addColumn('action', function ($deletedCategory) {
                     return '<div class="btn-group btn-group-sm">
-                    <button type="button" class="btn btn-outline-primary restore-category" data-id ="' . $deletedCategory->category_id . '"><i
-                    class="fa fa-undo"></i></button>' . '<button type="button" class="btn btn-outline-danger remove-category" data-toggle="modal" 
-                    data-target="#confirmModal" data-id ="' . $deletedCategory->category_id . '"><i class="fa fa-trash"></i></button>
-                    </div>';
+            <button type="button" class="btn btn-outline-primary restore-category" data-id ="' . $deletedCategory->category_id . '"><i
+            class="fa fa-undo"></i></button>' .
+                        '<button type="button" class="btn btn-outline-primary force-delete" data-toggle="modal" data-target="#confirm-modal" data-id ="' . $deletedCategory->category_id . '"><i
+            class="fa fa-trash"></i></button>
+            </div>';
                 })
                 ->addColumn('Total Products', function ($deletedCategory) {
                     return $deletedCategory->products->count();

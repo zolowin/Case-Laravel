@@ -17,15 +17,16 @@ class ShoppingCartController extends Controller
         return $this->middleware('auth');
     }
 
-    public function addProduct(Request $request, $id){
+    public function addProduct(Request $request, $id)
+    {
         $product = Product::findOrFail($id);
         $products = Cart::content();
         foreach ($products as $pro)
-         if($product->product_id == $pro->id ){
-             $pro->qty += 1;
-             return redirect()->back();
-        }
-        if ($product->product_iStock = 0){
+            if ($product->product_id == $pro->id) {
+                $pro->qty += 1;
+                return redirect()->back();
+            }
+        if ($product->product_iStock = 0) {
             return redirect()->route('list.shopping.cart')
                 ->with('alertErr', "Sorry. Product $product->product_name  is temporarily out of stock");
         }
@@ -36,40 +37,49 @@ class ShoppingCartController extends Controller
         return redirect()->back();
     }
 
-    public function getListShoppingCart(){
+    public function getListShoppingCart()
+    {
         $products = Cart::content();
 //        dd($products);
         return view('shopping.cart', compact('products'));
     }
 
-    public function remove($rowId){
+    public function remove($rowId)
+    {
         Cart::remove($rowId);
         return redirect()->back();
     }
 
-    public function removeAll(){
+    public function removeAll()
+    {
+        if (!Cart::content()->count()) {
+            return redirect()->back()
+                ->with('alertErr', 'Your cart is empty, please shopping first');
+        }
         Cart::destroy();
-        return redirect()->back()->with('success','cart was deleted');
+        return redirect()->back()->with('success', 'cart was deleted');
     }
 
-    public function checkout(){
+    public function checkout()
+    {
         $products = Cart::content();
-
         if (!Cart::content()->count()){
-            return redirect()->back()
+            return redirect()->route('list.shopping.cart')
                 ->with('alertErr', 'Your cart is empty, please shop first');
         }
 
-        return view('shopping.checkout',compact('products'));
+        return view('shopping.checkout', compact('products'));
     }
 
-    public function updateQty( Request $request){
+    public function updateQty(Request $request)
+    {
 
     }
 
-    public function payment(Request $request){
-        $money = (integer)Cart::subtotal(0,',','');
-        if ($money > Auth::user()->money){
+    public function payment(Request $request)
+    {
+        $money = (integer)Cart::subtotal(0, ',', '');
+        if ($money > Auth::user()->money) {
             return redirect()->route('list.shopping.cart')
                 ->with('alertErr', 'The amount of money in your account is not enough to make this transaction');
         }
@@ -84,9 +94,9 @@ class ShoppingCartController extends Controller
         $transaction->tr_note = \request('tr_note');
         $transaction->save();
 
-        foreach (Cart::content() as $item){
+        foreach (Cart::content() as $item) {
             $product = Product::findOrFail($item->id);
-            if ($item->qty > $product->product_iStock){
+            if ($item->qty > $product->product_iStock) {
                 return redirect()->route('list.shopping.cart')
                     ->with('alertErr', "Sorry. The quantity of $product->product_name is only $product->product_iStock");
             }
@@ -109,20 +119,23 @@ class ShoppingCartController extends Controller
         return redirect()->route('list.shopping.cart')->with('success', 'Payment success. Thank you');
     }
 
-    public function editTransaction(Request $request, $id){
+    public function editTransaction(Request $request, $id)
+    {
         $transaction = Transaction::findOrFail($id);
 
         return response()->json($transaction, 200);
     }
 
-    public function updateTransaction(Request $request, $id){
+    public function updateTransaction(Request $request, $id)
+    {
         $transaction = Transaction::findOrFail($id);
         $transaction->update($request->all());
 
         return route('dashboard.home');
     }
 
-    public function manageTransaction($id){
+    public function manageTransaction($id)
+    {
         $transactions = Transaction::where('tr_user_id', Auth::user()->id)->get();
         return view('page.manage_transactions', compact('transactions'));
     }

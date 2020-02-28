@@ -1,6 +1,5 @@
 <div class="single-product-widget">
     <h2 class="product-wid-title">Recently Viewed</h2>
-    <a href="#" class="wid-view-more">View All</a>
     @foreach($products as $product)
         <div class="single-wid-product">
             <a href="{{ route('page.show_product', $product->product_slug) }}"><img

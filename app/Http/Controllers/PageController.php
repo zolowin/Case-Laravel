@@ -16,7 +16,7 @@ class PageController extends Controller
                                     ->take(4)
                                         ->get();
         $latest_products = Product::orderBy('created_at', 'desc')
-                                    ->take(10   )
+                                    ->take(10)
                                         ->get();
 
         $orders = Order::orderBy('or_qty', 'desc')
@@ -29,7 +29,13 @@ class PageController extends Controller
             array_push($topSell_product, $product);
         }
 
-        return view('page.index', compact('slider_products', 'latest_products', 'topSell_product'));
+        $top_new = DB::table('products')
+            ->join('orders', 'products.product_id', '=', 'orders.id')
+            ->select('products.*')
+            ->orderBy('products.created_at', 'desc')
+            ->take(3)
+            ->get();
+        return view('page.index', compact('slider_products', 'latest_products', 'topSell_product', 'top_new'));
     }
 
 

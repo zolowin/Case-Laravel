@@ -28,6 +28,7 @@
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
+
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
@@ -68,9 +69,20 @@
                     <li class="{{ Request::path() == 'shop' ? 'active' : null }}"><a href="{{ route('page.shop') }}">Shop page</a></li>
                     <li class="{{ Request::path() == 'shopping/cart' ? 'active' : null }}"><a href="{{ route('list.shopping.cart') }}">Cart</a></li>
                     <li class="{{ Request::path() == 'shopping/checkout' ? 'active' : null }}"><a href="{{ route('checkout.shopping') }}">Checkout</a></li>
-                    <li class="{{ Request::path() == 'category/iphone' ? 'active' : null }} dropdown"><a href="#">Category</a></li>
+                    <li class="{{ Request::path() == 'category/' ? 'active' : null }}">
+                        <div class="dropdown" >
+                            <button style="margin-top: 12px; background-color: #fbfbfb !important;" class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                CATEGORY
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{{ route('page.category', 'iphone') }}">Iphone (APPLE)</a>
+                                <a class="dropdown-item" href="{{ route('page.category', 'samsung') }}">Samsung</a>
+                                <a class="dropdown-item" href="{{ route('page.category', 'oppo') }}">Oppo</a>
+                            </div>
+                        </div>
+                    </li>
                     <li>
-                        <form action="{{ route('page.find_product') }}" method="get">
+                        <form action="{{ route('page.find_product') }}" method="get" style="margin-left: 5px">
                             <input type="text" class="d-inline" name="name" style="margin-top: 10px" placeholder="Input product's name">
                             <button class="btn btn-danger" style="font-size: 19px; margin-left: 5px">Find</button>
                         </form>

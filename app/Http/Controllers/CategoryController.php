@@ -46,7 +46,7 @@ class   CategoryController extends Controller
     {
         Category::create($this->validateAttribute());
 
-        return redirect('admin/dashboard');
+        return redirect()->route('admin.dashboard');
     }
 
     /**
@@ -88,7 +88,7 @@ class   CategoryController extends Controller
         $category->update($this->validateAttribute());
         $success = "Sửa Danh Mục Thành Công";
 
-        return redirect()->route('dashboard.home');
+        return redirect()->route('admin.dashboard');
     }
 
     /**
@@ -99,7 +99,11 @@ class   CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::destroy($id);
+        if (request('delete-action') === 'SoftDelete') {
+            Category::destroy($id);
+        } else {
+            Category::onlyTrashed()->where('category_id', $id)->forceDelete();
+        }
 
         return redirect('admin/dashboard');
     }
@@ -107,14 +111,14 @@ class   CategoryController extends Controller
     public function restore($id){
         Category::onlyTrashed()->where('category_id','=',$id)->restore();
 
-        return redirect()->route('dashboard.home');
+        return redirect()->route('admin.dashboard');
     }
-
-    public function permanently_remove($id){
-        Category::forceDelete()->where('category_id', '=', $id);
-
-        return redirect()->route('dashboard.home');
-    }
+//
+//    public function permanently_remove($id){
+//        Category::forceDelete()->where('category_id', '=', $id);
+//
+//        return redirect()->route('admin.dashboard');
+//    }
 
     public function validateAttribute()
     {

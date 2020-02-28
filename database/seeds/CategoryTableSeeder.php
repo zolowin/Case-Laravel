@@ -19,8 +19,18 @@ class CategoryTableSeeder extends Seeder
             'category_enable'=> 1,
         ],
             [
-                'category_name' => 'Macbook',
-                'category_alias' => 'macbook',
+                'category_name' => 'SamSung',
+                'category_alias' => 'samsung',
+                'category_enable' => 1,
+            ],
+            [
+                'category_name' => 'OPPO',
+                'category_alias' => 'oppo',
+                'category_enable' => 1,
+            ],
+            [
+                'category_name' => 'Huawei',
+                'category_alias' => 'huawei',
                 'category_enable' => 1,
             ]
         ]);

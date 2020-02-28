@@ -20,9 +20,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function (){
         Route::get('/',  'DashboardController@dashboard');
         Route::get('/dashboard', 'DashboardController@dashboard')->name('admin.dashboard');
 
-        Route::get('/transactions', function (){
-            return view('admin.transactions');
-        })->name('admin.transactions');
+        Route::group(['prefix' => 'transactions', 'middleware' => 'admin'], function (){
+            Route::get('/', 'TransactionController@index')->name('admin.transactions');
+        });
 
         Route::get('/sales', function (){
             return view('admin.sales');
@@ -45,7 +45,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function (){
         Route::post('/edit-category/{id}', 'CategoryController@update')->name('category.update');
         Route::get('/destroy-category/{id}', 'CategoryController@destroy')->name('category.destroy');
         Route::get('/restore-category/{id}','CategoryController@restore')->name('category.restore');
-        Route::get('/permanently_remove/{id}', 'CategoryController@permanently_remove')->name('category.permanently_remove');
     });
 
 //Product

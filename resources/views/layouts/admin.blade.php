@@ -44,9 +44,9 @@
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="{{ route('admin.dashboard') }}" class="nav-link">Home</a>
             </li>
-{{--            <li class="nav-item d-none d-sm-inline-block">--}}
-{{--                <a href="#" class="nav-link">Contact</a>--}}
-{{--            </li>--}}
+            {{--            <li class="nav-item d-none d-sm-inline-block">--}}
+            {{--                <a href="#" class="nav-link">Contact</a>--}}
+            {{--            </li>--}}
         </ul>
 
         <!-- SEARCH FORM -->
@@ -78,8 +78,19 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                    <img src="../../../../AdminLTE-master/dist/img/user2-160x160.jpg" class="img-circle elevation-2"
-                         alt="User Image">
+                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button"
+                       aria-expanded="false" aria-controls="collapseExample">
+                        <img src="../../../../AdminLTE-master/dist/img/user2-160x160.jpg" class="img-circle elevation-2"
+                             alt="User Image">
+                    </a>
+                    <div class="collapse" id="collapseExample">
+                        <a href="{{ route('logout') }}" class="btn btn-primary" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            Sign out</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
                 </div>
                 <div class="info">
                     <a href="#" class="d-block">{{ Auth::user()->name }}</a>
@@ -95,19 +106,22 @@
 
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{ route('admin.dashboard') }}" class="nav-link {{ Request::path() == 'admin/dashboard' ? 'active' : null }}">
+                                <a href="{{ route('admin.dashboard') }}"
+                                   class="nav-link {{ Request::path() == 'admin/dashboard' ? 'active' : null }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Dashboard</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('admin.transactions') }}" class="nav-link {{ Request::path() == 'admin/dashboard/transactions' ? 'active' : null }}">
+                                <a href="{{ route('admin.transactions') }}"
+                                   class="nav-link {{ Request::path() == 'admin/dashboard/transactions' ? 'active' : null }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Transactions</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('admin.sales') }}" class="nav-link {{ Request::path() == 'admin/dashboard/sales' ? 'active' : null }}">
+                                <a href="{{ route('admin.sales') }}"
+                                   class="nav-link {{ Request::path() == 'admin/dashboard/sales' ? 'active' : null }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Sales</p>
                                 </a>

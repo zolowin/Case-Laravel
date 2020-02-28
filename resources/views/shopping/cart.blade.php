@@ -14,7 +14,8 @@
         </div>
     @endif
     <div class="container" style="margin-bottom: 5px; margin-top: 15px">
-        <a href="{{ route('destroy.shopping.cart') }}" class="btn btn-danger" style="margin-bottom: 10px; float: right">Remove
+        <a href="{{ route('destroy.shopping.cart') }}" class="btn btn-danger" style="margin-bottom: 10px; float: right"
+            onclick="confirm('Are you sure remove all?')">Remove
             all cart</a>
         <table class="table table-bordered">
             <thead>
@@ -29,6 +30,7 @@
             </tr>
             </thead>
             <tbody>
+            @if(isset($products))
             <?php $i = 1 ?>
             @foreach($products as $key => $product)
 {{--                {{ dd(Cart::remove($product->rowId) )}}--}}
@@ -46,10 +48,12 @@
                     </td>
                     <td><p class="text-right" id="total" >${{ number_format($product->qty * $product->price, 0, ',', ' ') }}</p></td>
                     <td>&emsp;
-                        <a href="{{ route('remove.shopping.cart', $product->rowId) }}" class="btn btn-danger" title="Delete"><i class="fa fa-trash"></i></a>
+                        <a href="{{ route('remove.shopping.cart', $product->rowId) }}" class="btn btn-danger" title="Delete"
+                           onclick="confirm('Are you sure delete this?')"><i class="fa fa-trash"></i></a>
                     </td>
                 </tr>
             @endforeach
+            @endif
         </table>
     </div>
     <div class="container text-center" style="margin-bottom: 20px">
