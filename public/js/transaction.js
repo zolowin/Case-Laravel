@@ -1,27 +1,26 @@
-var product = product || {};
-product.drawTable = function(){
+var transaction = transaction || {};
+transaction.drawTable = function(){
     $.ajax({
-        url:'/api/admin/sanpham/',
+        url:'/api/admin/transactions/',
         method : 'GET',
         dataType : 'json',
         success : function(data){
             console.log(data);
-            $('#tbProduct').empty();
+            $('#tbTransaction').empty();
             $.each(data, function(index, value){
-                $('#tbProduct').append(
+                $('#tbTransaction').append(
                     "<tr>"+
-                    "<td>" + value.productName + "</td>" +
-                    "<td>" + value.productLineId + "</td>" +
-                    "<td>" + value.productScale + "</td>" +
-                    "<td>" + value.productVendor + "</td>" +
-                    "<td>" + value.productDescription + "</td>" +
-                    "<td>" + value.quantityInStock + "</td>" +
-                    "<td>" + value.buyPrice + "</td>" +
-                    "<td>" + value.MSRP + "</td>" +
-                    "<td>" + value.image + "</td>" +
+                    "<td>" + value.id + "</td>" +
+                    "<td>" + value.tr_user_name + "</td>" +
+                    "<td>" + value.tr_city + "</td>" +
+                    "<td>" + value.tr_phone + "</td>" +
+                    "<td>" + value.tr_total_price + "</td>" +
+                    "<td>" + value.tr_status + "</td>" +
+                    "<td>" + value.created_at + "</td>" +
+                    "<td>" + value.updated_at + "</td>" +
                     "<td>" +
-                    "<a href='javascript:;' onclick=product.getDetail(" + value.id + ")><i class='fa fa-edit'></i></a> " +
-                    "<a href='javascript:;' onclick=product.delete(" + value.id + ")><i class='fa fa-trash'></i></a>" +
+                    "<a href='javascript:;' onclick=transaction.getDetail(" + value.id + ")><i class='fa fa-edit'></i></a> " +
+                    "<a href='javascript:;' onclick=transaction.delete(" + value.id + ")><i class='fa fa-trash'></i></a>" +
                     "</td>" +
                     "</tr>"
                 );
@@ -29,7 +28,7 @@ product.drawTable = function(){
         }
     });
 };
-product.save = function(){
+transaction.save = function(){
     if($('#frmAddEditUser').valid()){
         var dataObj = {};
         if($('#Id').val() == 0){
@@ -49,7 +48,7 @@ product.save = function(){
                 dataType: 'json',
                 contentType: 'application/json',
                 success: function (data) {
-                    $('#addEditModel').modal('hide');
+                    $('#addEditTransaction').modal('hide');
                     product.drawTable();
                 }
             });
@@ -71,15 +70,15 @@ product.save = function(){
                 dataType: 'json',
                 contentType: 'application/json',
                 success: function (data) {
-                    $('#addEditModel').modal('hide');
-                    product.drawTable();
+                    $('#addEditTransaction').modal('hide');
+                    transaction.drawTable();
                 }
             });
         }
     }
 };
 
-product.resetForm = function () {
+transaction.resetForm = function () {
     $('#productName').val();
     $('#productLineId').val();
     $('#productScale').val();
@@ -90,17 +89,17 @@ product.resetForm = function () {
     $('#MSRP').val();
     $('#image').val();
     $('#Id').val(0);
-    $('#addEditModel').find('.modal-title').text('Create New User');
+    $('#addEditTransaction').find('.modal-title').text('Create New Transaction');
     $("#frmAddEditUser").validate().resetForm();
 };
 
-product.openAddEditUser = function(){
-    product.resetForm();
-    $('#addEditUser').modal('show');
+transaction.openAddEditUser = function(){
+    transaction.resetForm();
+    $('#addEditTransaction').transaction('show');
 };
 
-product.getDetail = function (id) {
-    product.resetForm();
+transaction.getDetail = function (id) {
+    transaction.resetForm();
     $.ajax({
         url: '/api/admin/sanpham/' + id,
         method: 'GET',
@@ -117,15 +116,15 @@ product.getDetail = function (id) {
             $('#MSRP').val(data.MSRP);
             $('#image').val(data.image);
             $('#Id').val(data.id);
-            $('#addEditUser').find('.modal-title').text('Update User');
-            $('#addEditUser').modal('show');
+            $('#addEditTransaction').find('.modal-title').text('Update Transaction');
+            $('#addEditTransaction').modal('show');
         }
     });
 };
 
-product.delete = function (id) {
+transaction.delete = function (id) {
     bootbox.confirm({
-        message: "Mày thật sự ko muốn bán nó nữa ?",
+        message: "  ?",
         buttons: {
             confirm: {
                 label: 'Yessss',
@@ -144,7 +143,7 @@ product.delete = function (id) {
                     dataType: 'json',
                     contentType: 'application/json',
                     success: function (data) {
-                        product.drawTable();
+                        transaction.drawTable();
                     }
                 });
             }
@@ -152,10 +151,10 @@ product.delete = function (id) {
     });
 };
 
-product.init =function () {
-    product.drawTable();
+transaction.init =function () {
+    transaction.drawTable();
 };
 
 $(document).ready(function () {
-    product.init();
+    transaction.init();
 });

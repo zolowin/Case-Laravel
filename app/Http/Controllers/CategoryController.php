@@ -97,9 +97,9 @@ class   CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        if (request('delete-action') === 'SoftDelete') {
+        if (\request('delete-action') == 'SoftDelete') {
             Category::destroy($id);
         } else {
             Category::onlyTrashed()->where('category_id', $id)->forceDelete();

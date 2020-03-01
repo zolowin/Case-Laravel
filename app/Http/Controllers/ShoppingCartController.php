@@ -23,8 +23,7 @@ class ShoppingCartController extends Controller
         $products = Cart::content();
         foreach ($products as $pro)
             if ($product->product_id == $pro->id) {
-                $pro->qty += 1;
-                return redirect()->back();
+                return redirect()->back()->with('alert', 'The product already exists');
             }
         if ($product->product_iStock = 0) {
             return redirect()->route('list.shopping.cart')
@@ -37,11 +36,39 @@ class ShoppingCartController extends Controller
         return redirect()->back();
     }
 
+    public function ajaxUpdateProduct(Request $request, $id, $qty, $rowId)
+    {
+        if ($request->ajax()) {
+            $product = Product::findOrFail($id);
+
+            if ($product) {
+                if($qty >= 1) {
+                    Cart::update($rowId, ['id' => $product->product_id, 'name' => $product->product_name, 'qty' => $qty,
+                        'weight' => $product->product_weight, 'price' => $product->product_price,
+                        'options' => ['image' => $product->product_image, 'slug' => $product->product_slug]]);
+                    return response()->json(
+                        [
+                            'success' => 'Added to cart'
+                        ],
+                        200
+                    );
+                } else {
+                    return response()->json(
+                      [
+                          'qtyErr' => 'Quantity must greater than 1'
+                      ]
+                    );
+                }
+            }
+        }
+    }
+
     public function getListShoppingCart()
     {
         $products = Cart::content();
-//        dd($products);
-        return view('shopping.cart', compact('products'));
+        $productsId = array_column(array_values($products->toArray()), 'id');
+
+        return view('shopping.cart', compact('products', 'productsId'));
     }
 
     public function remove($rowId)
@@ -63,7 +90,7 @@ class ShoppingCartController extends Controller
     public function checkout()
     {
         $products = Cart::content();
-        if (!Cart::content()->count()){
+        if (!Cart::content()->count()) {
             return redirect()->route('list.shopping.cart')
                 ->with('alertErr', 'Your cart is empty, please shop first');
         }

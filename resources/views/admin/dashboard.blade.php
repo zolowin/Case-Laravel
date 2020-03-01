@@ -308,12 +308,16 @@
             $('#form-delete').on('submit', function(e){
                 e.preventDefault();
                 let id = $('#delete-id').val();
+                let deleteAction = $('#delete-action').val();
                 count_category -= 1;
                 $.ajax({
                     url: `category/destroy-category/${id}`,
-                    method: 'GET',
+                    method: 'POST',
+                    data: {
+                        'delete-action': deleteAction,
+                        '_method': 'DELETE'
+                    },
                     success: function(){
-                        alert(2);
                         $('#confirm-modal').modal('hide');
                         $('#category-table').DataTable().ajax.reload();
                         $('#categoryDeleted').DataTable().ajax.reload();

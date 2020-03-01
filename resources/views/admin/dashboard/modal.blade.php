@@ -2,7 +2,8 @@
      aria-hidden="true">
     <div class="modal-dialog modal-notify modal-danger" role="document">
         <!--Content-->
-        <form method="GET" id="form-delete">
+        <form method="POST" id="form-delete">
+            @csrf
             <div class="modal-content">
                 <!--Body-->
                 <div class="modal-body">

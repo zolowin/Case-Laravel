@@ -2,11 +2,14 @@
 @section('title page', 'SHOP')
 @section('title', 'SHOP')
 @section('content')
+    @if(isset($alert))
+        <script type='text/javascript'>alert("{{ $alert }}");</script>;
+    @endif
     <div class="single-product-area">
         <div class="zigzag-bottom"></div>
         <div class="container">
-                <div class="row">
-                    @foreach($products as $product)
+            <div class="row">
+                @foreach($products as $product)
                     <div class="col-md-3 col-sm-6">
                         <div class="single-shop-product">
                             <div class="product-upper">
@@ -23,7 +26,8 @@
                             </div>
 
                             <div class="product-option-shop">
-                                <form action="{{ route('add.shopping.cart', $product->product_id) }}" method="post" class="cart">
+                                <form action="{{ route('add.shopping.cart', $product->product_id) }}" method="post"
+                                      class="cart">
                                     @csrf
                                     <div class="quantity">
                                         <input type="number" size="4" class="input-text qty text" title="Qty" value="1"
@@ -34,21 +38,21 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach
+                @endforeach
 
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="product-pagination text-center">
-                                <nav>
-                                    <ul class="pagination">
-                                        {{ $products->render() }}
-                                    </ul>
-                                </nav>
-                            </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="product-pagination text-center">
+                            <nav>
+                                <ul class="pagination">
+                                    {{ $products->render() }}
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
 @endsection

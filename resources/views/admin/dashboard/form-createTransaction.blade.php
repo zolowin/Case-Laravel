@@ -1,4 +1,4 @@
-<div id="addTransaction" class="modal fade" role="dialog">
+<div id="addEditTransaction" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
         <form id="formTransaction">
             <!-- Modal content-->

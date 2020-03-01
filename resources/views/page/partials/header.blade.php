@@ -78,6 +78,7 @@
                                 <a class="dropdown-item" href="{{ route('page.category', 'iphone') }}">Iphone (APPLE)</a>
                                 <a class="dropdown-item" href="{{ route('page.category', 'samsung') }}">Samsung</a>
                                 <a class="dropdown-item" href="{{ route('page.category', 'oppo') }}">Oppo</a>
+                                <a class="dropdown-item" href="{{ route('page.category', 'huawei') }}">Huawei</a>
                             </div>
                         </div>
                     </li>

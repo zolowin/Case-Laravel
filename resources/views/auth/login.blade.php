@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,7 +11,8 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/sign-in/">
 
     <!-- Bootstrap core CSS -->
-    <link href="/docs/4.4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="/docs/4.4/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="/docs/4.4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
@@ -41,6 +41,7 @@
             padding-bottom: 40px;
             background-color: #e5e1dc;
         }
+
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;
@@ -55,6 +56,7 @@
                 font-size: 3.5rem;
             }
         }
+
         .form-signin {
             max-width: 330px;
         }
@@ -63,7 +65,8 @@
 <body class="text-center">
 <form class="form-signin" method="POST" action="{{ route('login') }}">
     @csrf
-    <a href="{{ route('page.index') }}" title="back home"><img class="mb-4" src="{{ asset('img/logo.png') }}" alt="" width="72" height="72"></a>
+    <a href="{{ route('page.index') }}" title="back home"><img class="mb-4" src="{{ asset('img/logo.png') }}" alt=""
+                                                               width="72" height="72"></a>
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <label for="email" class="sr-only">Email address</label>
     {{--            <input type="email" id="inputEmail"  placeholder="Email address" required autofocus>--}}
@@ -72,8 +75,8 @@
            value="{{ old('email') }}" placeholder="Email address" required autocomplete="email" autofocus>
     @error('email')
     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+        <strong>{{ $message }}</strong>
+    </span>
     @enderror
     <label for="password" class="sr-only">Password</label>
     {{--            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>--}}
@@ -83,8 +86,8 @@
 
     @error('password')
     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+        <strong>{{ $message }}</strong>
+    </span>
     @enderror
     <div class="checkbox mb-3">
         <label>

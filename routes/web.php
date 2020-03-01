@@ -21,7 +21,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function (){
         Route::get('/dashboard', 'DashboardController@dashboard')->name('admin.dashboard');
 
         Route::group(['prefix' => 'transactions', 'middleware' => 'admin'], function (){
-            Route::get('/', 'TransactionController@index')->name('admin.transactions');
+            Route::get('/', function (){
+                return view('admin.transactions');
+            })->name('admin.transactions');
         });
 
         Route::get('/sales', function (){
@@ -43,7 +45,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function (){
         Route::post('/create-category', 'CategoryController@store')->name('category.store');
         Route::get('/edit-category/{id}', 'CategoryController@edit')->name('category.edit');
         Route::post('/edit-category/{id}', 'CategoryController@update')->name('category.update');
-        Route::get('/destroy-category/{id}', 'CategoryController@destroy')->name('category.destroy');
+        Route::delete('/destroy-category/{id}', 'CategoryController@destroy')->name('category.destroy');
         Route::get('/restore-category/{id}','CategoryController@restore')->name('category.restore');
     });
 
@@ -69,6 +71,7 @@ Route::get('/find-product', 'PageController@find_product')->name('page.find_prod
 
 //Cart
 Route::group(['prefix' => 'shopping'],function (){
+    Route::get('/ajaxadd/{id}/{qty}/{rowId}', 'ShoppingCartController@ajaxUpdateProduct')->name('ajaxUpdate.shopping.cart');
     Route::post('/add/{id}', 'ShoppingCartController@addProduct')->name('add.shopping.cart');
     Route::get('cart', 'ShoppingCartController@getListShoppingCart')->name('list.shopping.cart');
     Route::get('cart/delete/{rowId}','ShoppingCartController@remove')->name('remove.shopping.cart');
