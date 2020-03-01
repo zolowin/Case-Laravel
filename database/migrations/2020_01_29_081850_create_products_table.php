@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('product_chip');
             $table->integer('product_ram');
             $table->integer('product_storage');
-            $table->integer('product_battery');
+            $table->string('product_battery');
             $table->float('product_screen');
             $table->integer('product_camera_resolution');
             $table->double('product_price');

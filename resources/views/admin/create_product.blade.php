@@ -51,6 +51,24 @@
                                     </div>
 
                                     <div class="form-group row">
+                                        <label for="product_operating_system" class="col-md-4 col-form-label text-md-right">Operating System</label>
+
+                                        <div class="col-md-6">
+                                            <input id="product_operating_system" type="text"
+                                                   class="form-control @error('product_operating_system') is-invalid @enderror"
+                                                   name="product_operating_system" value="{{ old('product_operating_system') }}"
+                                                   required
+                                                   autocomplete="product_operating_system">
+
+                                            @error('product_operating_system')
+                                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
                                         <label for="product_chip" class="col-md-4 col-form-label text-md-right">Processor</label>
                                         <div class="col-md-6">
                                             <input id="product_chip" type="text"
@@ -102,7 +120,7 @@
                                         <label for="product_battery" class="col-md-4 col-form-label text-md-right">Battery</label>
 
                                         <div class="col-md-6">
-                                            <input id="product_battery" type="number"
+                                            <input id="product_battery" type="text"
                                                    class="form-control @error('product_battery') is-invalid @enderror"
                                                    name="product_battery" value="{{ old('product_battery') }}" required
                                                    autocomplete="product_battery">
@@ -116,8 +134,7 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="product_screen" class="col-md-4 col-form-label text-md-right">Product's
-                                            Screen</label>
+                                        <label for="product_screen" class="col-md-4 col-form-label text-md-right">Display Size</label>
 
                                         <div class="col-md-6">
                                             <input id="product_screen" type="number" step="0.01"
@@ -289,23 +306,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
-                                        <label for="product_operating_system" class="col-md-4 col-form-label text-md-right">Operating System</label>
-
-                                        <div class="col-md-6">
-                                            <input id="product_operating_system" type="text"
-                                                   class="form-control @error('product_operating_system') is-invalid @enderror"
-                                                   name="product_operating_system" value="{{ old('product_operating_system') }}"
-                                                   required
-                                                   autocomplete="product_operating_system">
-
-                                            @error('product_operating_system')
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                            @enderror
-                                        </div>
-                                    </div>
 
                                     <div class="form-group row">
                                         <label for="product_origin" class="col-md-4 col-form-label text-md-right">Origin</label>

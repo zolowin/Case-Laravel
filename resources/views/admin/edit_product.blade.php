@@ -50,8 +50,26 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="product_chip" class="col-md-4 col-form-label text-md-right">Product's
-                                            Chipset</label>
+                                        <label for="product_operating_system" class="col-md-4 col-form-label text-md-right">Operating System</label>
+
+                                        <div class="col-md-6">
+                                            <input id="product_operating_system" type="text"
+                                                   class="form-control @error('product_operating_system') is-invalid @enderror"
+                                                   name="product_operating_system"
+                                                   value="{{ $product->product_operating_system }}"
+                                                   required
+                                                   autocomplete="product_operating_system">
+
+                                            @error('product_operating_system')
+                                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="product_chip" class="col-md-4 col-form-label text-md-right">Processor</label>
 
                                         <div class="col-md-6">
                                             <input id="product_chip" type="text"
@@ -68,8 +86,7 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="product_ram" class="col-md-4 col-form-label text-md-right">Product's
-                                            Ram</label>
+                                        <label for="product_ram" class="col-md-4 col-form-label text-md-right">Memory</label>
 
                                         <div class="col-md-6">
                                             <input id="product_ram" type="number"
@@ -86,11 +103,27 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="product_battery" class="col-md-4 col-form-label text-md-right">Product's
-                                            Battery</label>
+                                        <label for="product_storage" class="col-md-4 col-form-label text-md-right">Memory</label>
 
                                         <div class="col-md-6">
-                                            <input id="product_battery" type="number"
+                                            <input id="product_storage" type="number"
+                                                   class="form-control @error('product_storage') is-invalid @enderror"
+                                                   name="product_storage" value="{{ $product->product_storage }}" required
+                                                   autocomplete="product_storage">
+
+                                            @error('product_storage')
+                                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="product_battery" class="col-md-4 col-form-label text-md-right">Battery</label>
+
+                                        <div class="col-md-6">
+                                            <input id="product_battery" type="text"
                                                    class="form-control @error('product_battery') is-invalid @enderror"
                                                    name="product_battery" value="{{ $product->product_battery }}" required
                                                    autocomplete="product_battery">
@@ -104,8 +137,7 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="product_screen" class="col-md-4 col-form-label text-md-right">Product's
-                                            Screen</label>
+                                        <label for="product_screen" class="col-md-4 col-form-label text-md-right">Display Size:</label>
 
                                         <div class="col-md-6">
                                             <input id="product_screen" type="number" step="0.01 "
@@ -122,8 +154,7 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="product_camera_resolution" class="col-md-4 col-form-label text-md-right">Product's
-                                            Camera Resolution</label>
+                                        <label for="product_camera_resolution" class="col-md-4 col-form-label text-md-right">Camera Resolution</label>
 
                                         <div class="col-md-6">
                                             <input id="product_camera_resolution" type="number" step="0.01"
@@ -141,8 +172,7 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="product_describes" class="col-md-2 col-form-label text-md-right">Product's
-                                            Description</label>
+                                        <label for="product_describes" class="col-md-2 col-form-label text-md-right">Description</label>
 
                                         <div class="col-md-10   ">
                                     <textarea name="product_describes" id="product_describes"
@@ -159,8 +189,7 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="product_feature" class="col-md-4 col-form-label text-md-right">Product's
-                                            Feature</label>
+                                        <label for="product_feature" class="col-md-4 col-form-label text-md-right">Feature</label>
 
                                         <div class="col-md-6">
                                             <input id="product_feature" type="text"
@@ -178,8 +207,7 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="product_price" class="col-md-4 col-form-label text-md-right">Product's
-                                            Price</label>
+                                        <label for="product_price" class="col-md-4 col-form-label text-md-right">Price</label>
 
                                         <div class="col-md-6">
                                             <input id="product_price" type="number"
@@ -196,8 +224,7 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="product_weight" class="col-md-4 col-form-label text-md-right">Product's
-                                            Weight</label>
+                                        <label for="product_weight" class="col-md-4 col-form-label text-md-right">Weight</label>
 
                                         <div class="col-md-6">
                                             <input id="product_weight" type="number"
@@ -285,25 +312,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
-                                        <label for="product_operating_system" class="col-md-4 col-form-label text-md-right">Product's
-                                            Operating System</label>
 
-                                        <div class="col-md-6">
-                                            <input id="product_operating_system" type="text"
-                                                   class="form-control @error('product_operating_system') is-invalid @enderror"
-                                                   name="product_operating_system"
-                                                   value="{{ $product->product_operating_system }}"
-                                                   required
-                                                   autocomplete="product_operating_system">
-
-                                            @error('product_operating_system')
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                            @enderror
-                                        </div>
-                                    </div>
 
                                     <div class="form-group row">
                                         <label for="product_origin" class="col-md-4 col-form-label text-md-right">Product's

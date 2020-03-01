@@ -46,11 +46,11 @@
                                         <ins>Camera Resolution : {{ $product->product_camera_resolution }} MP</ins>
                                     </div>
                                     <div class="product-inner-price">
-                                        <ins>Battery : {{ $product->product_battery }} mAh</ins>
+                                        <ins>Battery : {{ $product->product_battery }}</ins>
                                     </div>
 
                                     <div class="product-inner-price">
-                                        <ins>Display Size : {{ $product->product_screen }} inchs</ins>
+                                        <ins>Display Size : {{ $product->product_screen }}"</ins>
                                     </div>
                                     <div class="product-inner-price">
                                         <ins>Salient Features : {{ $product->product_feature }}</ins>
