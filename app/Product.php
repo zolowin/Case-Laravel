@@ -12,6 +12,7 @@ class  Product extends Model
             'product_name',
             'product_chip',
             'product_ram',
+            'product_storage',
             'product_battery',
             'product_screen',
             'product_camera_resolution',

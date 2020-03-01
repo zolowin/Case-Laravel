@@ -31,33 +31,37 @@
                                 <div class="product-inner">
                                     <h2 class="product-name text-center text-danger">{{ $product->product_name }}</h2>
                                     <div class="product-inner-price ml-5">
-                                        <ins>Chipset : {{ $product->product_chip }}</ins>
+                                        <ins>Operating System : {{ $product->product_operating_system }}</ins>
                                     </div>
                                     <div class="product-inner-price">
-                                        <ins>Screen : {{ $product->product_screen }} inchs</ins>
+                                        <ins>Processor : {{ $product->product_chip }}</ins>
                                     </div>
                                     <div class="product-inner-price">
-                                        <ins>RAM : {{ $product->product_ram }} GB</ins>
+                                        <ins>Memory : {{ $product->product_ram }} GB</ins>
                                     </div>
                                     <div class="product-inner-price">
-                                        <ins>Battery : {{ $product->product_battery }} mAh</ins>
+                                        <ins>Storage : {{ $product->product_storage }} GB</ins>
                                     </div>
                                     <div class="product-inner-price">
                                         <ins>Camera Resolution : {{ $product->product_camera_resolution }} MP</ins>
                                     </div>
                                     <div class="product-inner-price">
-                                        <ins>Salient Features : {{ $product->product_feature }}</ins>
+                                        <ins>Battery : {{ $product->product_battery }} mAh</ins>
+                                    </div>
+
+                                    <div class="product-inner-price">
+                                        <ins>Display Size : {{ $product->product_screen }} inchs</ins>
                                     </div>
                                     <div class="product-inner-price">
-                                        <ins>Operating System : {{ $product->product_operating_system }}</ins>
+                                        <ins>Salient Features : {{ $product->product_feature }}</ins>
                                     </div>
+
                                     <div class="product-inner-price">
                                         <ins>Origin : {{ $product->product_origin }}</ins>
                                     </div>
                                     <div class="product-inner-price">
                                         <ins>Made Year : {{ $product->product_year_made }}</ins>
                                     </div>
-
                                     <form action="{{ route('add.shopping.cart', $product->product_id) }}" method="post"
                                           class="cart">
                                         @csrf
@@ -69,7 +73,6 @@
                                         </div>
                                         <button type="submit" class="add_to_cart_button"> Add to cart</button>
                                     </form>
-
                                     <div role="tabpanel">
                                         <ul class="product-tab" role="tablist">
                                             <li role="presentation" class="active"><a href="#home" aria-controls="home"

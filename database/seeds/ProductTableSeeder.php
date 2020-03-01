@@ -17,6 +17,7 @@ class ProductTableSeeder extends Seeder
                 'product_slug' =>  'samsung-galaxy-a51',
                 'product_chip' => '	Exynos 9611',
                 'product_ram' => 6,
+                'product_storage' => 32,
                 'product_battery'=> 4000,
                 'product_screen' => 6.5,
                 'product_camera_resolution' => 32,
