@@ -53,7 +53,7 @@ class ProductController extends Controller
             $product->product_image = $image;
         }
         $product->save();
-        $success = "Thêm Sản Phẩm Thành Công";
+        $success = "Product has been added";
 
         return redirect('admin/dashboard/')->with('success', $success);
     }
@@ -100,9 +100,9 @@ class ProductController extends Controller
         }
 
         $product->save();
-        $success = "Sửa Sản Phẩm Thành Công";
+        $success = "Product hasbeen updated";
 
-        return redirect()->route('product.index')->with('success', $success);
+        return redirect()->route('admin.dashboard')->with('success', $success);
 
     }
 
@@ -116,7 +116,7 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $product->delete($product->product_id);
-        $success = "Xóa Danh Mục $product->product_name Thành Công";
+        $success = "$product->product_name has been deleted";
 
         return redirect('admin/product/')->with('success', $success);
     }

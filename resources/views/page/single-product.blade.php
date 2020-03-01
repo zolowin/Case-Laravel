@@ -28,39 +28,41 @@
                             </div>
 
                             <div class="col-sm-6 bg-warning">
-                                <div class="product-inner">
-                                    <h2 class="product-name text-center text-danger">{{ $product->product_name }}</h2>
+                                <div class="product-inner" style="margin-top: 15px">
+                                    <h2 class="product-name text-center text-danger">{{ $product->product_name }}.</h2>
                                     <div class="product-inner-price ml-5">
-                                        <ins>Operating System : {{ $product->product_operating_system }}</ins>
+                                        <ins>Operating System : {{ $product->product_operating_system }}.</ins>
                                     </div>
                                     <div class="product-inner-price">
-                                        <ins>Processor : {{ $product->product_chip }}</ins>
+                                        <ins>Processor : {{ $product->product_chip }}.</ins>
                                     </div>
                                     <div class="product-inner-price">
-                                        <ins>Memory : {{ $product->product_ram }} GB</ins>
+                                        <ins>Memory : {{ $product->product_ram }} GB.</ins>
                                     </div>
                                     <div class="product-inner-price">
-                                        <ins>Storage : {{ $product->product_storage }} GB</ins>
+                                        <ins>Storage : {{ $product->product_storage }} GB.</ins>
                                     </div>
                                     <div class="product-inner-price">
-                                        <ins>Camera Resolution : {{ $product->product_camera_resolution }} MP</ins>
+                                        <ins>Camera Resolution : {{ $product->product_camera_resolution }} MP.</ins>
                                     </div>
                                     <div class="product-inner-price">
-                                        <ins>Battery : {{ $product->product_battery }}</ins>
-                                    </div>
-
-                                    <div class="product-inner-price">
-                                        <ins>Display Size : {{ $product->product_screen }}"</ins>
-                                    </div>
-                                    <div class="product-inner-price">
-                                        <ins>Salient Features : {{ $product->product_feature }}</ins>
+                                        <ins>Battery : {{ $product->product_battery }}.</ins>
                                     </div>
 
                                     <div class="product-inner-price">
-                                        <ins>Origin : {{ $product->product_origin }}</ins>
+                                        <ins>Display Size : {{ $product->product_screen }}".</ins>
                                     </div>
                                     <div class="product-inner-price">
-                                        <ins>Made Year : {{ $product->product_year_made }}</ins>
+                                        <ins>Salient Features : {{ $product->product_feature }}.</ins>
+                                    </div>
+                                    <div class="product-inner-price">
+                                        <ins>Origin : {{ $product->product_origin }}.</ins>
+                                    </div>
+                                    <div class="product-inner-price">
+                                        <ins>Made Year : {{ $product->product_year_made }}.</ins>
+                                    </div>
+                                    <div class="product-inner-price">
+                                        <ins>Weight : {{ $product->product_weight }} oz.</ins>
                                     </div>
                                     <form action="{{ route('add.shopping.cart', $product->product_id) }}" method="post"
                                           class="cart">
