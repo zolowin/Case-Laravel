@@ -20,8 +20,11 @@
             <ul class="" id="bxslider-home4">
                 @foreach($slider_products as $product)
                     <li>
+                        <a class="caption button-radius"
+                           href="{{ route('page.show_product', $product->product_slug) }}">
                         <img src="{{ 'data:image/jpeg;base64,'.$product->product_image }}" alt="Slide"
                              style="max-height: 600px; max-width: 600px">
+                        </a>
                         <div class="caption-group slider-infomation">
                             <h2 class="caption title">
                                 {{ $product->product_name }}
