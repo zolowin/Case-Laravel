@@ -6,6 +6,10 @@
             div.slider-infomation {
                 display: none;
             }
+
+            .footer-about-us {
+                margin-top: 10px;
+            }
         }
 
         .product-bit-title {
