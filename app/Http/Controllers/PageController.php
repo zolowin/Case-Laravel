@@ -65,7 +65,7 @@ class PageController extends Controller
     }
 
     public function find_product(Request $request) {
-        $key_find = \request('name');
+        $key_find = $request->input('name');
         $products = Product::where('product_name', 'like', '%' . strtolower($key_find) . '%')->get();
         return view('page.search_product', compact('products', 'key_find'));
     }
