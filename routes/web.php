@@ -78,9 +78,9 @@ Route::group(['prefix' => 'shopping'],function (){
     Route::get('cart/destroy', 'ShoppingCartController@removeAll')->name('destroy.shopping.cart');
     Route::get('/checkout', 'ShoppingCartController@checkOut')->name('checkout.shopping');
     Route::post('/checkout', 'ShoppingCartController@payment')->name('payment.shopping');
-    Route::get('{id}/manage-transaction','ShoppingCartController@manageTransaction')->name('manageTransaction.shopping');
+    Route::get('/manage-transaction','ShoppingCartController@manageTransaction')->name('manageTransaction.shopping');
     //transaction
-    Route::get('/edit-transaction/{id}', 'ShoppingCartController@editTransaction')->name('edit.transaction');
+    Route::get('/edit-transaction/{id}', 'ShoppingCartController@editTransaction')->name('edit.transaction')    ;
     Route::post('/edit-transaction/{id}', 'ShoppingCartController@updateTransaction')->name('update.transaction');
 });
 

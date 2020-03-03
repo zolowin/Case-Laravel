@@ -158,10 +158,10 @@ class ShoppingCartController extends Controller
         $transaction = Transaction::findOrFail($id);
         $transaction->update($request->all());
 
-        return route('dashboard.home');
+        return route('admin.dashboard');
     }
 
-    public function manageTransaction($id)
+    public function manageTransaction()
     {
         $transactions = Transaction::where('tr_user_id', Auth::user()->id)->get();
         return view('page.manage_transactions', compact('transactions'));
