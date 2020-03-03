@@ -5,7 +5,6 @@ transaction.drawTable = function(){
         method : 'GET',
         dataType : 'json',
         success : function(data){
-            console.log(data);
             $('#tbTransaction').empty();
             $.each(data, function(index, value){
                 $('#tbTransaction').append(
@@ -15,7 +14,8 @@ transaction.drawTable = function(){
                     "<td>" + value.tr_city + "</td>" +
                     "<td>" + value.tr_phone + "</td>" +
                     "<td>" + value.tr_total_price + "</td>" +
-                    "<td>" + value.tr_status + "</td>" +
+                    "<td>" + "<p class='tr_status " + value.id + "'>" + value.tr_status + "</p>" +
+                        "<input  id='tr_status" + value.id +"' value='" + value.tr_status + "'/>" + "</td>" +
                     "<td>" + value.created_at + "</td>" +
                     "<td>" + value.updated_at + "</td>" +
                     "<td>" +
@@ -25,9 +25,12 @@ transaction.drawTable = function(){
                     "</tr>"
                 );
             });
+            console.log($('#tr_status1').val());
+            $('#tr_status1').text('')
         }
     });
 };
+
 transaction.save = function(){
     if($('#frmAddEditUser').valid()){
         var dataObj = {};

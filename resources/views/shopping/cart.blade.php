@@ -78,7 +78,7 @@
             id = rowId.slice(3);
             price = $('#price' + id).val();
             qty = parseInt($('#' + rowId).val());
-            if(qty < 1){
+            if(qty < 1 || isNaN(qty)){
                 $('#qty_error' + id).text('Quantity must greater than 1');
                 $('#total' + id).text('$ ' + '0');
             }

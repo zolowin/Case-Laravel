@@ -11,16 +11,14 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="product-images">
-                                    <div class="product-main-img">
+                                    <div class="product-main-img text-center">
                                         <img src="{{ 'data:image/jpeg;base64,'.$product->product_image }}" alt="Slide"
-                                             style="max-height: 600px; max-width: 400px">
-                                        <div class="product-inner-price text-center" style="margin-left: 10px">
+                                             style="max-height: 410px; max-width: 400px">
+                                        <div class="product-inner-price" style="margin-top: 20px">
                                             <h3 ><span class="text-primary">${{ number_format($product->product_price, 0, ',', ' ') }}</span>
                                                 <del>
                                                     ${{ number_format($product->product_price * 1.10 , 0, ',', ' ') }}</del>
                                             </h3>
-                                        </div>
-                                        <div class="text-center">
                                             <p class="font-weight-bold">Color : {{ $product->product_color }}</p>
                                         </div>
                                     </div>

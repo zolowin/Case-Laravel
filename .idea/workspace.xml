@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="29352c0e-22bf-4697-8420-f8acdf5a8365" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/transaction.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/transaction.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/transactions.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/transactions.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/page/single-product.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/page/single-product.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/shopping/cart.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/shopping/cart.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -283,7 +285,9 @@
       <workItem from="1583076196912" duration="838000" />
       <workItem from="1583077216130" duration="1000" />
       <workItem from="1583077388916" duration="1168000" />
-      <workItem from="1583080657915" duration="549000" />
+      <workItem from="1583080657915" duration="741000" />
+      <workItem from="1583112417203" duration="11089000" />
+      <workItem from="1583199971785" duration="2652000" />
     </task>
     <servers />
   </component>

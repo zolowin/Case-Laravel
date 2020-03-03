@@ -29,8 +29,8 @@
                                             <th>Phone</th>
                                             <th>Total Price</th>
                                             <th>Status</th>
-                                            <th>Note</th>
                                             <th>Order Date</th>
+                                            <th>Updated Date</th>
                                             <th>action</th>
                                         </tr>
                                         </thead>
