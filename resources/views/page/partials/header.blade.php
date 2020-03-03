@@ -70,8 +70,7 @@
                 <ul class="nav navbar-nav ">
                     <li class="{{ Request::path() == '/' ? 'active' : null }}"><a
                             href="{{ route('page.index') }}">Home</a></li>
-                    <li class="{{ Request::path() == 'shop' ? 'active' : null }}"><a href="{{ route('page.shop') }}">Shop
-                            page</a></li>
+                    <li class="{{ Request::path() == 'shop' ? 'active' : null }}"><a href="{{ route('page.shop') }}">Shop</a></li>
                     <li class="{{ Request::path() == 'category/' ? 'active' : null }}">
                         <div class="dropdown">
                             <button style="margin-top: 12px; background-color: #fbfbfb !important;"

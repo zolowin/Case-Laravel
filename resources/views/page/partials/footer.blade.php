@@ -46,7 +46,7 @@
                     <p>Sign up to our newsletter and get exclusive deals you wont find anywhere else straight to your inbox!</p>
                     <div class="newsletter-form">
                         <form action="#">
-                            <input type="email" placeholder="Enter your email">
+                            <input type="email" placeholder="Input your email">
                             <input type="submit" value="Subscribe">
                         </form>
                     </div>
