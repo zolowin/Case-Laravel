@@ -48,18 +48,6 @@
             {{--                <a href="#" class="nav-link">Contact</a>--}}
             {{--            </li>--}}
         </ul>
-
-        <!-- SEARCH FORM -->
-        <form class="form-inline ml-3">
-            <div class="input-group input-group-sm">
-                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-navbar" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </div>
-        </form>
     </nav>
     <!-- /.navbar -->
 
@@ -103,27 +91,26 @@
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     <li class="nav-item has-treeview menu-open">
-
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{{ route('admin.dashboard') }}"
                                    class="nav-link {{ Request::path() == 'admin/dashboard' ? 'active' : null }}">
-                                    <i class="far fa-circle nav-icon"></i>
+                                    <i class="nav-icon fa fa-tachometer-alt"></i>
                                     <p>Dashboard</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('admin.transactions') }}"
-                                   class="nav-link {{ Request::path() == 'admin/dashboard/transactions' ? 'active' : null }}">
-                                    <i class="far fa-circle nav-icon"></i>
+                                   class="nav-link {{ Request::path() == 'admin/transactions' ? 'active' : null }}">
+                                    <i class="fa fa-shopping-cart"></i>
                                     <p>Transactions</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('admin.sales') }}"
-                                   class="nav-link {{ Request::path() == 'admin/dashboard/sales' ? 'active' : null }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Sales</p>
+                                <a href="{{ route('admin.statistical') }}"
+                                   class="nav-link {{ Request::path() == 'admin/statistical' ? 'active' : null }}">
+                                    <i class="nav-icon fas fa-chart-pie"></i>
+                                    <p>Statistical</p>
                                 </a>
                             </li>
                         </ul>

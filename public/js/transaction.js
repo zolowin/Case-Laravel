@@ -14,8 +14,8 @@ transaction.drawTable = function(){
                     "<td>" + value.tr_city + "</td>" +
                     "<td>" + value.tr_phone + "</td>" +
                     "<td>" + value.tr_total_price + "</td>" +
-                    "<td>" + "<p class='tr_status " + value.id + "'>" + value.tr_status + "</p>" +
-                        "<input  id='tr_status" + value.id +"' value='" + value.tr_status + "'/>" + "</td>" +
+                    "<td>" + "<p id='status" + value.id + "'>" + value.tr_status + "</p>" +
+                        "<input  id='tr_status" + value.id +"' type='hidden' value='" + value.tr_status + "'/>" + "</td>" +
                     "<td>" + value.created_at + "</td>" +
                     "<td>" + value.updated_at + "</td>" +
                     "<td>" +
@@ -24,9 +24,19 @@ transaction.drawTable = function(){
                     "</td>" +
                     "</tr>"
                 );
+                var  id = value.id;
+                switch (parseInt($('#tr_status' + id).val())) {
+                    case 0 :
+                        $('#status' + id).text('shipping');
+                        break;
+                    case 1 :
+                        $('#status' + id).text('cancel');
+                        break;
+                    case 2 :
+                        $('#status' + id).text('finished');
+                        break;
+                }
             });
-            console.log($('#tr_status1').val());
-            $('#tr_status1').text('')
         }
     });
 };

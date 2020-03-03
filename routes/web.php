@@ -26,9 +26,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function (){
             })->name('admin.transactions');
         });
 
-        Route::get('/sales', function (){
-            return view('admin.sales');
-        })->name('admin.sales');
+        Route::get('/statistical', function (){
+            return view('admin.statistical');
+        })->name('admin.statistical');
     });
 
     //datatable
