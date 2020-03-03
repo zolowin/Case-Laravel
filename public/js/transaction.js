@@ -55,7 +55,7 @@ transaction.save = function(){
             dataObj.MSRP = $('#MSRP').val();
             dataObj.image = $('#image').val();
             $.ajax({
-                url: '/api/admin/sanpham/',
+                url: '/api/admin/transactions/',
                 method: 'POST',
                 data: JSON.stringify(dataObj),
                 dataType: 'json',
@@ -77,7 +77,7 @@ transaction.save = function(){
             dataObj.image = $('#image').val();
             dataObj.id = $('#Id').val();
             $.ajax({
-                url: '/api/admin/sanpham/' + dataObj.id,
+                url: '/api/admin/transactions/' + dataObj.id,
                 method: 'PUT',
                 data: JSON.stringify(dataObj),
                 dataType: 'json',
@@ -114,7 +114,7 @@ transaction.openAddEditUser = function(){
 transaction.getDetail = function (id) {
     transaction.resetForm();
     $.ajax({
-        url: '/api/admin/sanpham/' + id,
+        url: '/api/admin/transactions/' + id,
         method: 'GET',
         dataType: 'json',
         contentType: 'application/json',
