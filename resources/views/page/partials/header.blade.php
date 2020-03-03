@@ -12,15 +12,16 @@
                 <h1 class="text-success font-weight-bold" style="margin-top: 70px">Think Different</h1>
             </div>
             @guest
-                <div class="col-sm-3" style="margin-top: 24px">
-                    <div class="shopping-item bg-warning" style="border-color: #0f401b; width: 90px">
+                <div class="col-sm-3 d-flex justify-content-end" style="margin-top: 24px">
+                    <div class="shopping-item dropdown dropdown-small bg-success text-center" style="border-color: #0f401b; width: 106.44px">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </div>
                     @if (Route::has('register'))
-                        <div class="shopping-item bg-warning" style="border-color: #0f401b">
+                        <div class="shopping-item bg-success" style="border-color: #0f401b; height: 47.6px; min-width: 106.44px">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </div>
                     @endif
+
                 </div>
             @else
                 <div class="col-sm-3 d-flex justify-content-end align-items-center" style="margin-top: 24px">
