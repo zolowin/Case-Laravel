@@ -15,6 +15,12 @@
         .product-bit-title {
             display: none;
         }
+
+        @media (min-width: 48em) {
+            .nav-masthead {
+                float: right;
+            }
+        }
     </style>
 @endsection
 @section('content')
@@ -94,6 +100,7 @@
                                         <img src="{{ 'data:image/jpeg;base64,'.$product->product_image }}"
                                              alt="product-image" style="width: 280px; height: 300px">
                                         <div class="product-hover">
+                                            <a href="javascript:void(0)" id="{{'add_to_cart' . $product->product_id}}" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
                                             <a href="{{ route('page.show_product', $product->product_slug) }}"
                                                class="view-details-link"><i
                                                     class="fa fa-link"></i> See details</a>
@@ -209,6 +216,16 @@
             });
 
             $(document).ready(function () {
+
+                $('.add-to-cart-link').click(function(){
+                    let id = $('.add-to-cart-link').attr('id').slice(11);
+                    return $.ajax({
+                        method: 'get',
+                        url: 'shopping/ajaxaddproduct/' + id,
+                        contentType: 'application/json',
+                        dataType: 'json'
+                    });
+                });
                 let products = localStorage.getItem('products');
                 products = $.parseJSON(products)
 

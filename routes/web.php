@@ -71,6 +71,7 @@ Route::get('/find-product', 'PageController@find_product')->name('page.find_prod
 
 //Cart
 Route::group(['prefix' => 'shopping'],function (){
+    Route::get('/ajaxaddproduct/{id}', 'ShoppingCartController@ajaxAddProduct')->name('ajaxAddProduct.shopping.cart');
     Route::get('/ajaxadd/{id}/{qty}/{rowId}', 'ShoppingCartController@ajaxUpdateProduct')->name('ajaxUpdate.shopping.cart');
     Route::post('/add/{id}', 'ShoppingCartController@addProduct')->name('add.shopping.cart');
     Route::get('cart', 'ShoppingCartController@getListShoppingCart')->name('list.shopping.cart');

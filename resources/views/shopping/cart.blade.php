@@ -44,19 +44,14 @@
                     <input id="{{'rowId' . $product->id}}" type="hidden" value="{{$product->rowId}}">
                     <td><p class="text-right">${{ number_format($product->price, 0,',','.') }}</p></td>
                     <td>
-                        <input id="{{'qty' . $product->id}}" type="number" size="4" class="input-text qty text" title="Qty" value="{{ $product->qty }}"
+                        <input id="{{'qty' . $product->id}}" type="number" class="input-text qty text" title="Qty" value="{{ $product->qty }}"
                                name="quantity" min="1" step="1" style="height: 35px; width: 100px;" onkeyup="changeQty(this.id); updateCart(this.id)">
                         <p style="color: red; font-size: 12px" id="{{'qty_error' . $product->id}}"></p>
-                        @if(Session::has('qtyErr'))
-                            <div class="container alert alert-danger text-center" role="alert">
-                                <h2>{{ session::get('qtyErr') }}</h2>
-                            </div>
-                        @endif
                     </td>
                     <td><p class="text-right" id="{{'total'. $product->id}}" >${{ number_format($product->qty * $product->price, 0, ',', ' ') }}</p></td>
                     <td>&emsp;
                         <a href="{{ route('remove.shopping.cart', $product->rowId) }}" class="btn btn-danger" title="Delete"
-                           onclick="confirm('Are you sure delete this?')"><i class="fa fa-trash"></i></a>
+                           onclick="return(confirm('Are you sure delete this?'))"><i class="fa fa-trash"></i></a>
                     </td>
                 </tr>
             @endforeach
@@ -124,15 +119,6 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-
-            $('.qty').rules('add', {
-                required: true,
-                min: 1,
-                messages: {
-                    required: "Quantity can't be blank",
-                    min: "Quantity must be greater than 1"
-                }
-            })
         });
     </script>
 @endsection

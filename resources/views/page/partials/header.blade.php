@@ -13,7 +13,7 @@
             </div>
             @guest
                 <div class="col-sm-3" style="margin-top: 24px">
-                    <div class="shopping-item bg-warning" style="border-color: #0f401b">
+                    <div class="shopping-item bg-warning" style="border-color: #0f401b; width: 90px">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </div>
                     @if (Route::has('register'))
@@ -23,7 +23,7 @@
                     @endif
                 </div>
             @else
-                <div class="col-sm-3" style="margin-top: 24px">
+                <div class="col-sm-3 d-flex justify-content-end align-items-center" style="margin-top: 24px">
                     <div class="shopping-item dropdown dropdown-small bg-success" style="border-color: #0f401b">
                         <a id="navbar Dropdown" class="nav-link dropdown-toggle" href="#" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -43,9 +43,9 @@
                             </form>
                         </div>
                     </div>
-                    <div class="shopping-item bg-success" style="border-color: #0f401b">
-                        <a href="{{ route('list.shopping.cart') }}">Cart <span
-                                class="cart-amunt">${{ Cart::subtotal(0,'',' ') }}</span> <i
+                    <div class="shopping-item bg-success" style="border-color: #0f401b; height: 47.6px; min-width: 106.44px">
+                        <a href="{{ route('list.shopping.cart') }}"><span
+                                class="cart-amunt">${{ Str::limit(Cart::subtotal(0,'',' '), 8) }}</span> <i
                                 class="fa fa-shopping-cart"></i> <span class="product-count">{{ Cart::count() }}</span></a>
                     </div>
                 </div>

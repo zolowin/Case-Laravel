@@ -63,6 +63,38 @@ class ShoppingCartController extends Controller
         }
     }
 
+    public function ajaxAddProduct(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+        $products = Cart::content();
+        foreach ($products as $pro)
+            if ($product->product_id == $pro->id) {
+                return response()->json(
+                    [
+                        'faild' => 'The product already exists'
+                    ],
+                    200
+                );
+            }
+        if ($product->product_iStock = 0) {
+            return response()->json(
+                [
+                    'faild' => 'Sorry. Product $product->product_name  is temporarily out of stock'
+                ],
+                200
+            );
+        }
+        Cart::add(['id' => $product->product_id, 'name' => $product->product_name, 'qty' => 1,
+            'weight' => $product->product_weight, 'price' => $product->product_price,
+            'options' => ['image' => $product->product_image, 'slug' => $product->product_slug]]);
+        return response()->json(
+            [
+                'success' => 'Added to cart'
+            ],
+            200
+        );
+    }
+
     public function getListShoppingCart()
     {
         $products = Cart::content();
