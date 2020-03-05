@@ -32,8 +32,8 @@
                     <li>
                         <a class="caption button-radius"
                            href="{{ route('page.show_product', $product->product_slug) }}">
-                        <img src="{{ 'data:image/jpeg;base64,'.$product->product_image }}" alt="Slide"
-                             style="max-height: 600px; max-width: 600px">
+                            <img src="{{ 'data:image/jpeg;base64,'.$product->product_image }}" alt="Slide"
+                                 style="max-height: 600px; max-width: 600px">
                         </a>
                         <div class="caption-group slider-infomation">
                             <h2 class="caption title">
@@ -100,7 +100,8 @@
                                         <img src="{{ 'data:image/jpeg;base64,'.$product->product_image }}"
                                              alt="product-image" style="width: 280px; height: 300px">
                                         <div class="product-hover">
-                                            <a href="javascript:void(0)" id="{{'add_to_cart' . $product->product_id}}" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                            <a href="javascript:void(0)" id="{{'add_to_cart' . $product->product_id}}"
+                                               class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
                                             <a href="{{ route('page.show_product', $product->product_slug) }}"
                                                class="view-details-link"><i
                                                     class="fa fa-link"></i> See details</a>
@@ -130,10 +131,14 @@
                 <div class="col-md-12">
                     <div class="brand-wrapper">
                         <div class="brand-list">
-                            <a href="{{ route('page.category', 'iphone' ) }}"><img src="{{ asset('img/iphone.png') }}" alt=""></a>
-                            <a href="{{ route('page.category', 'samsung' ) }}"><img src="{{ asset('img/samsung.jpg') }}" alt=""></a>
-                            <a href="{{ route('page.category', 'oppo' ) }}"><img src="{{ asset('img/oppo.jpg') }}" alt=""></a>
-                            <a href="{{ route('page.category', 'huawei' ) }}"><img src="{{ asset('img/huawei.png') }}" alt=""></a>
+                            <a href="{{ route('page.category', 'iphone' ) }}"><img src="{{ asset('img/iphone.png') }}"
+                                                                                   alt=""></a>
+                            <a href="{{ route('page.category', 'samsung' ) }}"><img src="{{ asset('img/samsung.jpg') }}"
+                                                                                    alt=""></a>
+                            <a href="{{ route('page.category', 'oppo' ) }}"><img src="{{ asset('img/oppo.jpg') }}"
+                                                                                 alt=""></a>
+                            <a href="{{ route('page.category', 'huawei' ) }}"><img src="{{ asset('img/huawei.png') }}"
+                                                                                   alt=""></a>
                         </div>
                     </div>
                 </div>
@@ -203,6 +208,26 @@
             </div>
         </div>
     </div> <!-- End product widget area -->
+
+{{--    modal success--}}
+    <div class="modal fade" id="success" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close  " data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Awesome</h4>
+                </div>
+                <div class="modal-body text-center text-success">
+                    <p>Added to cart.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{{--    endmodal--}}
 @endsection
 @section('script')
     <script type="text/javascript" src="{{ asset('js/bxslider.min.js') }}"></script>
@@ -216,16 +241,28 @@
             });
 
             $(document).ready(function () {
+                $('.add-to-cart-link').click(function () {
+                    @if(!Auth::check())
+                        window.location.href="http://anhtanmobile.herokuapp.com/login"
+                        @else
+                            let id = $('.add-to-cart-link').attr('id').slice(11);
+                            return $.ajax({
+                            method: 'get',
+                            url: 'shopping/ajaxaddproduct/' + id,
+                            contentType: 'application/json',
+                            dataType: 'json',
+                            success: function () {
+                               $('#success').modal();
+                               setTimeout(function () {
+                                   $('#success').modal('hide')},2000
+                               );
+                                // $('.modal-backdrop').remove();
+                            }
+                        });
+                    @endif
 
-                $('.add-to-cart-link').click(function(){
-                    let id = $('.add-to-cart-link').attr('id').slice(11);
-                    return $.ajax({
-                        method: 'get',
-                        url: 'shopping/ajaxaddproduct/' + id,
-                        contentType: 'application/json',
-                        dataType: 'json'
-                    });
                 });
+
                 let products = localStorage.getItem('products');
                 products = $.parseJSON(products)
 

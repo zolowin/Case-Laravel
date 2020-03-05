@@ -45,7 +45,7 @@
                     <td><p class="text-right">${{ number_format($product->price, 0,',','.') }}</p></td>
                     <td>
                         <input id="{{'qty' . $product->id}}" type="number" class="input-text qty text" title="Qty" value="{{ $product->qty }}"
-                               name="quantity" min="1" step="1" style="height: 35px; width: 100px;" onkeyup="changeQty(this.id); updateCart(this.id)">
+                               name="quantity" min="1" step="1" style="height: 35px; width: 100px;" onchange="changeQty(this.id); updateCart(this.id)">
                         <p style="color: red; font-size: 12px" id="{{'qty_error' . $product->id}}"></p>
                     </td>
                     <td><p class="text-right" id="{{'total'. $product->id}}" >${{ number_format($product->qty * $product->price, 0, ',', ' ') }}</p></td>

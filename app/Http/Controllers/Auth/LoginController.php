@@ -31,6 +31,7 @@ class LoginController extends Controller
         if(auth()->user()->level == 2){
             return '/admin/dashboard';
         }
+
         return $redirectTo = RouteServiceProvider::HOME;
     }
 

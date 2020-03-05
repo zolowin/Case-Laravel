@@ -16,22 +16,14 @@
                     <div class="shopping-item dropdown dropdown-small bg-success text-center" style="border-color: #0f401b; width: 106.44px">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </div>
-                    @if (Route::has('register'))
-                        <div class="shopping-item bg-success" style="border-color: #0f401b; height: 47.6px; min-width: 106.44px">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </div>
-                    @endif
-
                 </div>
             @else
-                <div class="col-sm-3 d-flex justify-content-end align-items-center" style="margin-top: 24px">
+                <div class="col-sm-3 d-flex justify-content-end " style="margin-top: 24px">
                     <div class="shopping-item dropdown dropdown-small bg-success" style="border-color: #0f401b">
                         <a id="navbar Dropdown" class="nav-link dropdown-toggle" href="#" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
-
-
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();

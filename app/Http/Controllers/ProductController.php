@@ -22,7 +22,7 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $products = Product::paginate(7);
-        return view('admin.manage_product', compact('categories','products'));
+        return view('admin.dashboard', compact('categories','products'));
     }
     /**
      * Show the form for creating a new resource.
@@ -100,7 +100,7 @@ class ProductController extends Controller
         }
 
         $product->save();
-        $success = "Product hasbeen updated";
+        $success = "Product has been updated";
 
         return redirect()->route('admin.dashboard')->with('success', $success);
 
@@ -118,6 +118,6 @@ class ProductController extends Controller
         $product->delete($product->product_id);
         $success = "$product->product_name has been deleted";
 
-        return redirect('admin/product/')->with('success', $success);
+        return redirect()->route('admin.dashboard')->with('success', $success);
     }
 }
