@@ -93,7 +93,9 @@
                         <form action="{{ route('page.find_product') }}" method="get" style="margin-left: 5px">
                             <input type="text" class="d-inline" name="name" style="margin-top: 10px"
                                    placeholder="Input product's name">
-                            <button class="btn btn-danger" style="font-size: 19px; margin-left: 5px">Find</button>
+                            <button class="btn btn-danger" style="font-size: 19px; margin-left: 5px">
+                                <i class="fa fa-search"></i>
+                            </button>
                         </form>
                     </li>
                 </ul>

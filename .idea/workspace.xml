@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="29352c0e-22bf-4697-8420-f8acdf5a8365" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ShoppingCartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ShoppingCartController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/bxslider.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/bxslider.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/script.slider.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/script.slider.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard/product.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard/product.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/page/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/page/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/page/partials/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/page/partials/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/shopping/cart.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/shopping/cart.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -307,7 +301,7 @@
       <workItem from="1583397942691" duration="385000" />
       <workItem from="1583463166513" duration="14000" />
       <workItem from="1583465969131" duration="56000" />
-      <workItem from="1583470465015" duration="5466000" />
+      <workItem from="1583470465015" duration="6196000" />
     </task>
     <servers />
   </component>
