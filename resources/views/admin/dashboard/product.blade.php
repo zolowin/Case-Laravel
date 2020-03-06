@@ -6,7 +6,7 @@
         <strong>List Products</strong>
         <a href="{{ route('product.create') }}" class="btn btn-success float-right">New Product</a>
     </div>
-   <div class="card-body">
+   <div class="card-body table-responsive">
        <table class="table table-bordered" id="product-table">
            <thead class="thead-dark text-center">
            <tr>

@@ -68,7 +68,7 @@ class ShoppingCartController extends Controller
         $product = Product::findOrFail($id);
         $products = Cart::content();
         foreach ($products as $pro)
-            if ($product->product_id == $pro->id) {
+            if ($pro->id = $id) {
                 return response()->json(
                     [
                         'faild' => 'The product already exists'
@@ -79,7 +79,7 @@ class ShoppingCartController extends Controller
         if ($product->product_iStock = 0) {
             return response()->json(
                 [
-                    'faild' => 'Sorry. Product $product->product_name  is temporarily out of stock'
+                    "faild" => "Sorry. Product $product->product_name  is temporarily out of stock"
                 ],
                 200
             );

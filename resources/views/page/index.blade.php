@@ -2,7 +2,7 @@
 @section('title', 'Shop Home')
 @section('style')
     <style>
-        @media screen and (max-width: 600px) {
+        @media screen and (max-width: 1000px) {
             div.slider-infomation {
                 display: none;
             }
@@ -101,7 +101,8 @@
                                              alt="product-image" style="width: 280px; height: 300px">
                                         <div class="product-hover">
                                             <a href="javascript:void(0)" id="{{'add_to_cart' . $product->product_id}}"
-                                               class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                               class="add-to-cart-link" onclick="addToCard(this.id)"><i
+                                                    class="fa fa-shopping-cart"></i> Add to cart</a>
                                             <a href="{{ route('page.show_product', $product->product_slug) }}"
                                                class="view-details-link"><i
                                                     class="fa fa-link"></i> See details</a>
@@ -114,6 +115,8 @@
 
                                     <div class="product-carousel-price">
                                         <ins>${{ number_format($product->product_price, 0, ',', ' ') }}</ins>
+                                        <input type="hidden" id="{{ 'price' . $product->product_id }}"
+                                               value="{{ $product->product_price }}">
                                     </div>
                                 </div>
                             @endforeach
@@ -209,7 +212,7 @@
         </div>
     </div> <!-- End product widget area -->
 
-{{--    modal success--}}
+    {{--    modal success--}}
     <div class="modal fade" id="success" role="dialog">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
@@ -227,7 +230,7 @@
         </div>
     </div>
     </div>
-{{--    endmodal--}}
+    {{--    endmodal--}}
 @endsection
 @section('script')
     <script type="text/javascript" src="{{ asset('js/bxslider.min.js') }}"></script>
@@ -241,27 +244,33 @@
             });
 
             $(document).ready(function () {
-                $('.add-to-cart-link').click(function () {
-                    @if(!Auth::check())
-                        window.location.href="http://anhtanmobile.herokuapp.com/login"
-                        @else
-                            let id = $('.add-to-cart-link').attr('id').slice(11);
-                            return $.ajax({
-                            method: 'get',
-                            url: 'shopping/ajaxaddproduct/' + id,
-                            contentType: 'application/json',
-                            dataType: 'json',
-                            success: function () {
-                               $('#success').modal();
-                               setTimeout(function () {
-                                   $('#success').modal('hide')},2000
-                               );
-                                // $('.modal-backdrop').remove();
-                            }
-                        });
-                    @endif
+                    {{--$('.add-to-cart-link').click(function () {--}}
+                    {{--    @if(!Auth::check())--}}
+                    {{--        window.location.href="http://anhtanmobile.herokuapp.com/login"--}}
+                    {{--        @else--}}
+                    {{--            let id = $('.add-to-cart-link').attr('id').slice(11);--}}
+                    {{--            let total_price =  parseInt($('.cart-amunt').text().slice(1));--}}
+                    {{--            alert(id)--}}
+                    {{--            alert(total_price)--}}
+                    {{--            return $.ajax({--}}
+                    {{--            method: 'get',--}}
+                    {{--            url: 'shopping/ajaxaddproduct/' + id,--}}
+                    {{--            contentType: 'application/json',--}}
+                    {{--            dataType: 'json',--}}
+                    {{--            success: function () {--}}
+                    {{--               $('#success').modal();--}}
+                    {{--               setTimeout(function () {--}}
+                    {{--                   $('#success').modal('hide')},2000--}}
+                    {{--               );--}}
+                    {{--                // $('.modal-backdrop').remove();--}}
+                    {{--                $('.cart-amunt').text('$ ' + formatNumber(array['total_price']));--}}
+                    {{--                $('.product-count').text(array['total_qty']);--}}
 
-                });
+                    {{--            }--}}
+                    {{--        });--}}
+                    {{--    @endif--}}
+
+                    {{--});--}}
 
                 let products = localStorage.getItem('products');
                 products = $.parseJSON(products)
@@ -277,5 +286,37 @@
                     });
             })
         })
+
+        let formatNumber = (num) => {
+            return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')
+        };
+
+        let addToCard = (rowId) => {
+            @if(!Auth::check())
+                window.location.href = "http://anhtanmobile.herokuapp.com/login"
+                @else
+            let id = rowId.slice(11);
+            let price = parseInt($('#price' + id).val());
+            let total_price = parseInt($('.cart-amunt').text().slice(1));
+            let product_count = parseInt($('.product-count').text()) + 1;
+            return $.ajax({
+                method: 'get',
+                url: 'shopping/ajaxaddproduct/' + id,
+                contentType: 'application/json',
+                dataType: 'json',
+                success: function () {
+
+                    $('.cart-amunt').text('$' + formatNumber(price + total_price));
+                    $('.product-count').text(product_count);
+                    $('#success').modal('show');
+                    setTimeout(function () {
+                            $('#success').modal('hide')
+                        }, 2000
+                    );
+                }
+            });
+            @endif
+        }
+
     </script>
 @endsection

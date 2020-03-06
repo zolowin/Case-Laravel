@@ -38,7 +38,7 @@
                     </div>
                     <div class="shopping-item bg-success" style="border-color: #0f401b; height: 47.6px; min-width: 106.44px">
                         <a href="{{ route('list.shopping.cart') }}"><span
-                                class="cart-amunt">${{ Str::limit(Cart::subtotal(0,'',' '), 8) }}</span> <i
+                                class="cart-amunt">${{ Cart::subtotal(0,'',' ') }}</span> <i
                                 class="fa fa-shopping-cart"></i> <span class="product-count">{{ Cart::count() }}</span></a>
                     </div>
                 </div>

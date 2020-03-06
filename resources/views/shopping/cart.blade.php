@@ -42,7 +42,7 @@
                                                  alt="Slide" style="height: 120px; width: 120px"></td>
                     <input id="{{'price' . $product->id}}" type="hidden" value="{{$product->price}}">
                     <input id="{{'rowId' . $product->id}}" type="hidden" value="{{$product->rowId}}">
-                    <td><p class="text-right">${{ number_format($product->price, 0,',','.') }}</p></td>
+                    <td><p class="text-right">${{ number_format($product->price, 0,',',' ') }}</p></td>
                     <td>
                         <input id="{{'qty' . $product->id}}" type="number" class="input-text qty text" title="Qty" value="{{ $product->qty }}"
                                name="quantity" min="1" step="1" style="height: 35px; width: 100px;" onchange="changeQty(this.id); updateCart(this.id)">
