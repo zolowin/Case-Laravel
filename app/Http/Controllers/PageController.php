@@ -46,10 +46,12 @@ class PageController extends Controller
 
     public function show_product($product_slug){
         $product = Product::where('product_slug',$product_slug)->first();
-        $related_products = Product::where('product_category_id', $product->product_category_id)
-                                    ->where('product_name','<>', $product->product_name)
+        $min_price = $product->product_price * 0.7;
+        $max_price = $product->product_price * 1.3;
+        $related_products = Product::where('product_price', '>=', $min_price)
+                                    ->where('product_name','<=', $max_price)
                                         ->orderBy('product_price','desc')
-                                            ->take(6)->get();
+                                            ->take(5)->get();
 
         $latest_products = Product::orderBy('created_at', 'desc')
             ->take(5)

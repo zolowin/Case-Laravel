@@ -117,11 +117,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="product-inner-category">
-                                        {{--                                        <p>Category: <a href="{{ route('page.category') }}">{{ $category_name }}</a>.--}}
-                                        Tags: <a href="">awesome</a>, <a
-                                            href="">best</a>, <a href="">sale</a>, <a href="">shoes</a>. </p>
-                                    </div>
                                 </div>
                             </div>
                         </div>
