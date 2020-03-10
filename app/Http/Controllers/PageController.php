@@ -49,7 +49,8 @@ class PageController extends Controller
         $min_price = $product->product_price * 0.7;
         $max_price = $product->product_price * 1.3;
         $related_products = Product::where('product_price', '>=', $min_price)
-                                    ->where('product_name','<=', $max_price)
+                                    ->where('product_price','<=', $max_price)
+                                    ->where('product_id', '!=', $product->product_id)
                                         ->orderBy('product_price','desc')
                                             ->take(5)->get();
 
