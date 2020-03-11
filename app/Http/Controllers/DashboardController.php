@@ -20,7 +20,7 @@ class DashboardController extends Controller
 
         $categories = Category::all();
 
-        $products = Product::all();
+        $products = Product::orderBy('product_id', 'desc')->get();
 
         return view('admin.dashboard', compact('new_tr', 'users', 'categories', 'products'));
     }

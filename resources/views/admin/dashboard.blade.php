@@ -148,6 +148,9 @@
                     {data: 'tr_note', name: 'tr_note'},
                     {data: 'created_at', name: 'created_at'},
                     {data: 'action', name: 'action', orderable: false, searchable: false}
+                ],
+                order: [
+                    [0, 'desc']
                 ]
             });
 
@@ -166,6 +169,9 @@
                     {data: 'created_at', name: 'created_at'},
                     {data: 'updated_at', name: 'updated_at'},
                     {data: 'action', name: 'action', orderable: false, searchable: false}
+                ],
+                order: [
+                    [0, 'desc']
                 ]
             });
 
@@ -188,6 +194,9 @@
                     {data: 'money', name: 'money'},
                     {data: 'level', name: 'level'},
                     {data: 'action', name: 'action', orderable: false, searchable: false}
+                ],
+                order: [
+                    [0, 'desc']
                 ]
             });
         });
@@ -216,7 +225,9 @@
                     data: 'action', name: 'action', orderable: false, searchable: false
                 }
             ],
-            order: [[0, 'asc']]
+            order: [
+                [0, 'desc']
+            ]
         });
     </script>
     <script>
