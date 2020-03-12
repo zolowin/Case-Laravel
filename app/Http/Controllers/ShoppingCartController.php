@@ -9,6 +9,8 @@ use App\User;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ShoppingMail;
 
 class ShoppingCartController extends Controller
 {
@@ -137,6 +139,13 @@ class ShoppingCartController extends Controller
 
     public function payment(Request $request)
     {
+//        $validator = Validator::make($request->all(), [
+//            'tr_user_name' => 'required',
+//            'tr_address' => 'required',
+//            'tr_city' => 'required',
+//            'tr_phone' => 'required',
+//        ]);
+
         $money = (integer)Cart::subtotal(0, ',', '');
         if ($money > Auth::user()->money) {
             return redirect()->route('list.shopping.cart')
@@ -169,10 +178,10 @@ class ShoppingCartController extends Controller
             $product->product_iStock -= $item->qty;
             $product->save();
         }
-        $orders = Transaction::where('or_transaction_id', $transaction->id);
+        $orders = Order::where('or_transaction_id', $transaction->id);
         Auth::user()->money -= $money;
         Auth::user()->save();
-
+        Mail::to(Auth::user()->email)->send(new ShoppingMail($transaction, $orders));
         Cart::destroy();
 
         return redirect()->route('list.shopping.cart')->with('success', 'Payment success. Thank you');
