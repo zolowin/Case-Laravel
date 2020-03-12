@@ -30,8 +30,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
     'google' => [
-        'client_id' => env('GOOGLE_APP_ID'),
-        'client_secret' => env('GOOGLE_APP_SECRET'),
-        'redirect' => env('GOOGLE_APP_CALLBACK_URL'),
+        'client_id' => '778595982337-dn58anghrq6m4voucch909u59spqss9t.apps.googleusercontent.com',
+        'client_secret' => 'rqt78o60MziPY8xOYOhHOeSH',
+        'redirect' => 'http://anhtanmobile.herokuapp.com/callback/google',
     ],
 ];
