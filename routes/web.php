@@ -88,3 +88,7 @@ Route::group(['prefix' => 'shopping'],function (){
 //Auth
 
 Auth::routes();
+
+//login socialite
+Route::get('/redirect/{social}', 'SocialAuthController@redirect')->name('get.login.social');
+Route::get('/callback/{social}', 'SocialAuthController@callback')->name('get.login.social_callback');

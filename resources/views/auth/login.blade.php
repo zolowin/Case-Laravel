@@ -23,6 +23,8 @@
     <link rel="icon" href="/docs/4.4/assets/img/favicons/favicon.ico">
     <meta name="msapplication-config" content="/docs/4.4/assets/img/favicons/browserconfig.xml">
     <meta name="theme-color" content="#563d7c">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
@@ -68,33 +70,41 @@
     <a href="{{ route('page.index') }}" title="back home"><img class="mb-4" src="{{ asset('img/logo.png') }}" alt=""
                                                                width="72" height="72"></a>
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="email" class="sr-only">Email address</label>
-    {{--            <input type="email" id="inputEmail"  placeholder="Email address" required autofocus>--}}
-    <input id="email" type="email" class="form-control"
-           class="form-control @error('email') is-invalid @enderror" name="email"
-           value="{{ old('email') }}" placeholder="Email address" required autocomplete="email" autofocus>
-    @error('email')
-    <span class="invalid-feedback" role="alert">
+    <div class="form-group">
+        <label for="email" class="sr-only">Email address</label>
+        {{--            <input type="email" id="inputEmail"  placeholder="Email address" required autofocus>--}}
+        <input id="email" type="email" class="form-control"
+               class="form-control @error('email') is-invalid @enderror" name="email"
+               value="{{ old('email') }}" placeholder="Email address" required autocomplete="email" autofocus>
+        @error('email')
+        <span class="invalid-feedback" role="alert">
         <strong>{{ $message }}</strong>
     </span>
-    @enderror
-    <label for="password" class="sr-only">Password</label>
-    {{--            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>--}}
-    <input id="password" type="password"
-           class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password"
-           required autocomplete="current-password">
+        @enderror
+    </div>
+    <div class="form-group">
+        <label for="password" class="sr-only">Password</label>
+        {{--            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>--}}
+        <input id="password" type="password"
+               class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password"
+               required autocomplete="current-password">
 
-    @error('password')
-    <span class="invalid-feedback" role="alert">
+        @error('password')
+        <span class="invalid-feedback" role="alert">
         <strong>{{ $message }}</strong>
     </span>
-    @enderror
+        @enderror
+    </div>
     <div class="checkbox mb-3">
         <label>
             <input type="checkbox" value="remember-me"> Remember me
         </label>
     </div>
     <button class="btn btn-lg btn-primary btn-block mb-2" type="submit">Sign in</button>
+    <a href="{{ route('get.login.social', 'google') }}" class="mt-2 mb-2">
+        <i class="fa fa-google"></i>
+        Sign in with Google
+    </a>
     <i class="text-center mr-2">or</i>
     <a href="{{ route('register') }}" type="submit"><b class="font-italic">Register</b></a>
 </form>

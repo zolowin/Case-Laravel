@@ -15,7 +15,7 @@ class PageController extends Controller
         $slider_products = Product::orderBy('product_price','desc')
                                     ->take(4)
                                         ->get();
-        $latest_products = Product::orderBy('created_at', 'desc')
+        $latest_products = Product::orderBy('product_id', 'desc')
                                     ->take(10)
                                         ->get();
 
@@ -32,7 +32,7 @@ class PageController extends Controller
         $top_new = DB::table('products')
             ->join('orders', 'products.product_id', '=', 'orders.id')
             ->select('products.*')
-            ->orderBy('products.created_at', 'desc')
+            ->orderBy('products.product_id', 'desc')
             ->take(3)
             ->get();
         return view('page.index', compact('slider_products', 'latest_products', 'topSell_product', 'top_new'));
