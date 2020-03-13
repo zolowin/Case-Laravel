@@ -9,11 +9,11 @@
         </div>
     @endif
     @if(Session::has('success'))
-        <div class="container alert alert-success text-center" role="alert">
+        <div class="container alert alert-success text-center" role="alert" style="margin-top: 15px">
             <h2>{{ session::get('success') }}</h2>
         </div>
     @endif
-    <div class="container" style="margin-bottom: 5px; margin-top: 15px">
+    <div class="container main-cart" style="margin-bottom: 5px; margin-top: 15px">
         <a href="{{ route('destroy.shopping.cart') }}" class="btn btn-danger" style="margin-bottom: 10px; float: right"
             onclick="confirm('Are you sure remove all?')">Remove
             all cart</a>
@@ -58,7 +58,7 @@
             @endif
         </table>
     </div>
-    <div class="container text-center" style="margin-bottom: 20px">
+    <div class="container text-center main-cart" style="margin-bottom: 20px">
         <h2 class="font-weight-bold d-inline">Total cost is <span class="text-success cart-amunt">${{ Cart::subtotal(0,',',' ') }}</span></h2>
         <a href="{{ route('checkout.shopping') }}" class="btn btn-success btn-lg d-inline" style="float: right">Check Out</a>
     </div>
@@ -112,6 +112,9 @@
             });
         };
 
+        @if(Session::has('success'))
+            $('.main-cart').hide();
+        @endif
 
         $(document).ready(function() {
             $.ajaxSetup({
